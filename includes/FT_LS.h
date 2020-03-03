@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/03 15:37:33 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/03 18:32:23 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <dirent.h>
 # include <limits.h>
 # include <sys/stat.h>
+# include <pwd.h>
+# include <grp.h>
+# include <time.h>
 
 // TO DELL
 # include <stdio.h>

@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/03 15:37:32 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/03 18:32:18 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,5 @@ int                 get_stat(t_dir *dir)
 
 t_dir               *get_dir(char *path)
 {
-    t_dir           *dir;
-    DIR             *dirr;
-    struct dirent   *dir_d;
-
-    dir = malloc(sizeof(t_dir));
-    if ((dirr = opendir(get_dir_name())) == NULL)
-    {
-        ft_putstr("Error DIR get dir ptr\n");
-    }
-
+    return (NULL);
 }
