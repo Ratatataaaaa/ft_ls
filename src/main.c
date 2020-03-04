@@ -6,11 +6,65 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/04 16:04:44 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/04 17:28:11 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
+
+static void         update_dir(t_stat *stat_, t_dir *dir, char *name)
+{
+    dir->chmod = get_chmod(stat_->st_mode);
+    dir->links = stat_->st_nlink;
+    dir->u_name = get_user_name(stat_->st_uid);
+    dir->u_group = get_group(stat_->st_gid);
+    dir->next = NULL;
+}
+
+
+// here some fuck cok fix it plz and dont fucking you brain !
+
+
+static int          add_dir(t_dir *head, t_dirent *dir)
+{
+    t_stat          *stat_;
+    t_dir           *new_elem;
+
+    if ((stat_ = malloc(sizeof(t_stat))) && (new_elem = malloc(sizeof(t_dir))))
+    {
+        lstat(get_full_name(get_dir_name(), dir->d_name), stat_);
+        if (head == NULL)
+            update_dir(stat_, head, dir->d_name);
+        else
+        {
+            new_elem = head->next;
+            while (new_elem->next != NULL)
+            {
+                /* code */
+            }
+            
+        }
+        
+    }
+
+}
+
+t_dir               *get_dir_list(char *path)
+{
+    t_dir           *head;
+    DIR             *dir;
+    struct dirent   *s_dirent;
+
+    head = NULL;
+    if ((dir = opendir(get_dir_name())))
+    {
+        while ((s_dirent = readdir(dir)))
+        {
+            add_dir(head, s_dirent);
+        }
+    }
+    return (head);
+}
 
 int                 main(int argc, char **argv)
 {

@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/04 16:04:42 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/04 17:28:26 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,23 @@
 // TO DELL
 # include <stdio.h>
 
-typedef struct      s_dir
+typedef struct          s_dir
 {
-    char            *name;
-    char            *full_name;
-    char            ch_mod[11];
-    struct stat     *stat_dir;
-}                   t_dir;        
+    char                *chmod;
+    nlink_t             links;
+    char                *u_name;
+    char                *u_group;
+    time_t              time_;
+    char                *name;
+    struct s_dir        *next;
+}                       t_dir;        
+typedef struct stat     t_stat;
+typedef struct dirent   t_dirent;
 
 char                *get_dir_name();
 char                *get_full_name(char *path_name, char *name);
 int                 get_stat(t_dir *dir);
-t_dir               *get_dir(char *path);
+t_dir               *get_dir_list(char *path);
 char                *get_user_name(uid_t uid);
 char                *get_group(gid_t gid);
 char                *get_chmod(mode_t mode);
