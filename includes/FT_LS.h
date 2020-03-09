@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/04 17:28:26 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/09 14:28:14 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ typedef struct          s_dir
     nlink_t             links;
     char                *u_name;
     char                *u_group;
-    time_t              time_;
+    char                *time_;
     char                *name;
+    off_t               size;
     struct s_dir        *next;
 }                       t_dir;        
 typedef struct stat     t_stat;

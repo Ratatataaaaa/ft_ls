@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:16:40 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/04 17:28:21 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/09 13:07:22 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ char                *get_user_name(uid_t uid)
     pass_t = NULL;
     user_name = NULL;
     if ((pass_t = getpwuid(uid)) &&
-        (user_name = ft_strnew(ft_strlen(pass_t->pw_name + 1))))
+        (user_name = ft_strnew(ft_strlen(pass_t->pw_name) + 1)))
         {
             user_name = ft_strcpy(user_name, pass_t->pw_name);
         }
@@ -96,7 +96,7 @@ char                *get_group(gid_t gid)
     group_t = NULL;
     group = NULL;
     if ((group_t = getgrgid(gid)) &&
-        (group = ft_strnew(ft_strlen(group_t->gr_name + 1))))
+        (group = ft_strnew(ft_strlen(group_t->gr_name) + 1)))
         {
             group = ft_strcpy(group, group_t->gr_name);
         }
