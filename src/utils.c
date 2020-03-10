@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars_flag.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/03/09 19:47:56 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/09 20:19:26 by cwing            ###   ########.fr       */
+/*   Created: 2020/03/10 15:41:31 by cwing             #+#    #+#             */
+/*   Updated: 2020/03/10 18:21:42 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
 
-static int          is_flag(char flag)
+void                no_such_file(char *path)
 {
-    if(flag == 'R' || flag == 'l' || flag == 'a' || flag == 'r' || flag == 't')
-        return (1);
-    else
-        return(0);
+    printf("ls: %s: No such file or directory\n", path);
 }
 
-char                *parsing(int argc, char **argv)
+void                get_all_time(t_dir *elem, t_stat *stat_)
 {
-    
+    elem->time_cre = get_time(&stat_->st_ctimespec.tv_sec);
+    elem->time_get = get_time(&stat_->st_atimespec.tv_sec);
+    elem->time_mod = get_time(&stat_->st_mtimespec.tv_sec);
 }
