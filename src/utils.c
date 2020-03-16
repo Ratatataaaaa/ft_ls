@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/10 18:21:42 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/16 20:26:31 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,3 +23,4 @@ void                get_all_time(t_dir *elem, t_stat *stat_)
     elem->time_get = get_time(&stat_->st_atimespec.tv_sec);
     elem->time_mod = get_time(&stat_->st_mtimespec.tv_sec);
 }
+

@@ -3,22 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_push_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/22 01:53:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2019/11/04 23:06:41 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/03/16 18:52:42 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lst_push_back(t_list **alst,
+void				ft_lst_push_back(t_list **alst,
 		void const *content, size_t content_size)
 {
-	if (alst)
+	t_list			*temp;
+	t_list			*find;
+
+	find = *alst;
+	if (alst && (temp = ft_lstnew(content, content_size)))
 	{
-		while (*alst)
-			alst = &((*alst)->next);
-		*alst = ft_lstnew(content, content_size);
+		while (find->next)
+			find = find->next;
+		find = temp;
 	}
+	else
+		*alst = temp;
 }
