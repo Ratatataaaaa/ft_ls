@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 18:20:41 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/16 20:26:32 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/16 22:05:09 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void                ft_free_lst(t_list **head)
 
     if (head && *head)
     {
-        while (head)
+        while ((*head))
         {
             to_del = *head;
             *head = (*head)->next;
@@ -41,6 +41,7 @@ void                ft_free_lst(t_list **head)
             ft_memdel((void**)&to_del);
         }
     }
+    head = NULL;
 }
 
 t_list              *get_dirs(int argc, char **argv)

@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/16 19:32:58 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/16 22:05:08 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,7 @@ void                no_such_file(char *path);
 t_flags             *get_flags(int argc, char **argv);
 void                get_all_time(t_dir *elem, t_stat *stat_);
 t_list              *get_dirs(int argc, char **argv);
+void                ft_free_lst(t_list **head);
+
+void                ft_sort_asci(t_list **head);
 #endif

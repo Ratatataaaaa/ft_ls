@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/16 20:26:28 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/16 22:05:11 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,16 @@ void                print_dirs(t_list *head)
 int                 main(int argc, char **argv)
 {
     t_dir           *head;
-    t_dir           *temp;
     t_flags         *flags;
     t_list          *dirs;
+    t_list          *temp;
     register short  i;
 
     i = 1;
     head = NULL;
     flags = get_flags(argc, argv);
     dirs = get_dirs(argc, argv);
+    temp = dirs;
     while (dirs)
     {
         head = get_dir_list((char*)dirs->content, flags);
@@ -59,7 +60,7 @@ int                 main(int argc, char **argv)
         }
         dirs = dirs->next;
     }
-    
-    
+    ft_free_lst(&temp);
+    ft_memdel((void**)&flags);
     return (0);
 }
