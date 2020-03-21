@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:47:56 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/16 18:21:55 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/21 23:55:37 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int                 is_flag(char flag)
 {
     if(flag == 'l' || flag =='R' || flag == 'a' || flag == 'r' || flag == 't' ||
-        flag == 'u' || flag == 'f' || flag == 'g' ||flag == 'd' || flag == 'G')
+        flag == 'u' || flag == 'f' || flag == 'g' ||flag == 'd' || flag == 'G' ||
+        flag == 'S')
         return(1);
     else
         return(0);
@@ -33,6 +34,7 @@ void                null_flags(t_flags  *flags)
     flags->r = '0';
     flags->t = '0';
     flags->u = '0';
+    flags->S = '0';
 }
 
 void                add_flag(char *arg, t_flags *flags)
@@ -52,6 +54,7 @@ void                add_flag(char *arg, t_flags *flags)
         flags->g = (arg[i] == 'g') ? 'g' : flags->g;
         flags->d = (arg[i] == 'd') ? 'd' : flags->d;
         flags->G = (arg[i] == 'G') ? 'G' : flags->G;
+        flags->S = (arg[i] == 'S') ? 'S' : flags->S;
     }
 }
 

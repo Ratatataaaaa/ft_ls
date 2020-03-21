@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/16 22:05:11 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/22 00:46:28 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,12 +49,14 @@ int                 main(int argc, char **argv)
     head = NULL;
     flags = get_flags(argc, argv);
     dirs = get_dirs(argc, argv);
+    check_names(dirs);
     temp = dirs;
     while (dirs)
     {
         head = get_dir_list((char*)dirs->content, flags);
         if (head)
         {
+            sort_dirs(&head, 'S');
             print_flags(head);
             free_t_dir(&head);
         }

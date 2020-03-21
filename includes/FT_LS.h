@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FT_LS.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
+/*   By: Raa <Raa@student.42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/16 22:05:08 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/21 23:49:40 by Raa              ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct          s_slags
     char                g;
     char                d;
     char                G;
+    char                S;
 }                       t_flags;
 
 
@@ -69,5 +70,7 @@ void                get_all_time(t_dir *elem, t_stat *stat_);
 t_list              *get_dirs(int argc, char **argv);
 void                ft_free_lst(t_list **head);
 
-void                ft_sort_asci(t_list **head);
+void                check_names(t_list *head);
+void                sort_dirs(t_dir **head, char flag);
+
 #endif
