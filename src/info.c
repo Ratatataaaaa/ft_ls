@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:16:40 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/10 16:56:41 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/26 21:42:42 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,24 @@ static char		get_file_type(int mode)
 
 char                *get_time(time_t *time_)
 {
-	time_t	today;
-	char	*str_time;
+	time_t			today;
+	char			*str_time;
+    char    		*str;
+	int				i;
 
     str_time = NULL;
+	i = 0;
 	time(&today);
 	str_time = ctime(time_) + 4;
-    return (str_time);
+	if ((str = ft_strnew(22)))
+	{
+		while (str_time[i] && str_time[i] !='\n')
+		{
+			str[i] = str_time[i];
+			i++;
+		}
+	}
+    return (str);
 }
 
 char                *get_chmod(mode_t mode)

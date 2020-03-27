@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 21:47:15 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/22 00:46:20 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/27 01:48:43 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,37 +78,19 @@ static void			sort_d_time(t_dir **head)
 	}
 }
 
-static void			sort_d_size(t_dir **head)
+void                sort_dirs(t_dir **head)
 {
-	t_dir           *temp_a;
-	t_dir			*temp_b;
-	t_dir			*back;
-
-	temp_a = *head;
-	back = NULL;
-	while (temp_a)
+	if ((*head)->flags->f == '0')
 	{
-		temp_b = temp_a->next;
-		if (temp_b && (temp_a->size > temp_b->size))
+		sort_d_asci(head);
+		if ((*head)->flags->R == 'R')
 		{
-			temp_a->next = temp_b->next;
-			temp_b->next = temp_a;
-			if (back)
-				back->next = temp_b;
-			sort_d_size(head);
+			free_t_dir(head, 'A');
+			free_t_dir(head, 'A');
 		}
-		back = temp_a;
-		temp_a = temp_b;
+		if ((*head)->flags->r == 'r')
+			sort_d_rev(head);
+		else if ((*head)->flags->t == 't' || (*head)->flags->u == 'u')
+			sort_d_time(head);
 	}
-}
-
-void                sort_dirs(t_dir **head, char flag)
-{
-	sort_d_asci(head);
-	if ((*head)->flags->r == 'r')
-		sort_d_rev(head);
-	else if ((*head)->flags->t == 't' || (*head)->flags->u == 'u')
-		sort_d_time(head);
-	else if ((*head)->flags->S == 'S')
-		sort_d_size(head);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   FT_LS.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Raa <Raa@student.42.fr>                    +#+  +:+       +#+        */
+/*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/21 23:49:40 by Raa              ###   ########.fr       */
+/*   Updated: 2020/03/27 15:27:28 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
+# include "OT_DEF.h"
 
 // TO DELL
 # include <stdio.h>
@@ -49,6 +50,7 @@ typedef struct          s_dir
     char                *time_get;
     char                *time_cre;
     char                *name;
+    blkcnt_t            blocks;
     t_flags             *flags;
     off_t               size;
     nlink_t             links;
@@ -63,7 +65,7 @@ char                *get_user_name(uid_t uid);
 char                *get_group(gid_t gid);
 char                *get_chmod(mode_t mode);
 char                *get_time(time_t *time_);
-void                free_t_dir(t_dir **src);
+void                free_t_dir(t_dir **src, char one);
 void                no_such_file(char *path);
 t_flags             *get_flags(int argc, char **argv);
 void                get_all_time(t_dir *elem, t_stat *stat_);
@@ -71,6 +73,11 @@ t_list              *get_dirs(int argc, char **argv);
 void                ft_free_lst(t_list **head);
 
 void                check_names(t_list *head);
-void                sort_dirs(t_dir **head, char flag);
-
+void                sort_dirs(t_dir **head);
+blkcnt_t            summ_blocks(t_dir *head);
+void				simple_print(t_dir *head, char all_mod);
+void				all_print(t_dir *head, char all_mod);
+void				main_print(t_dir *head);
+int                 dirs_count(t_list *head);
+void                run_ls(char *dirs, t_flags **flags, int dir_count);
 #endif

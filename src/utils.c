@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/22 00:46:22 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/27 14:17:42 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void                no_such_file(char *path)
 {
-    printf("ls: %s: No such file or directory\n", path);
+    ft_putstr("ft_ls: ");
+    ft_putstr(path);
+    ft_putstr(": No such file or directory\n");
 }
 
 void                get_all_time(t_dir *elem, t_stat *stat_)
@@ -26,10 +28,15 @@ void                get_all_time(t_dir *elem, t_stat *stat_)
 
 void                check_names(t_list *head)
 {
+    DIR             *dir;
+
+    dir = NULL;
     while (head)
     {
-        if (opendir((char*)(head->content)))
+        dir = opendir((char*)(head->content));
+        if (dir)
         {
+			closedir(dir);
             head = head->next;
             continue;
         }
@@ -39,4 +46,17 @@ void                check_names(t_list *head)
             head = head->next;
         }
     }
+}
+
+blkcnt_t            summ_blocks(t_dir *head)
+{
+    blkcnt_t        summ;
+
+    summ = 0;
+    while (head)
+    {
+        summ += head->blocks;
+        head = head->next;
+    }
+    return (summ);
 }

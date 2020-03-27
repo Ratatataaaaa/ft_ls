@@ -6,63 +6,60 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/22 00:46:28 by cwing            ###   ########.fr       */
+/*   Updated: 2020/03/27 16:25:36 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
 
-void                print_flags(t_dir *elem)
+void                run_ls(char *dirs, t_flags **flags, int dir_count)
 {
     t_dir           *head;
+    t_dir           *save_head;
 
-    head = elem;
-    while (head)
+    head = get_dir_list(dirs, *flags);
+    if (head)
     {
-         printf("%10s%4d%6s%6s%7lld %.12s %s\n", head->chmod, head->links,
-           head->u_name, head->u_group, head->size, head->time_mod, head->name);
-        head = head->next;
-    }
-    printf("Flags: l=%c, R=%c, a=%c, r=%c, t=%c, u=%c, f=%c, g=%c, d=%c, G=%c\n", elem->flags->l,elem->flags->R,elem->flags->a,
-                                                                                    elem->flags->r,elem->flags->t,elem->flags->u,elem->flags->f,
-                                                                                        elem->flags->g,elem->flags->d,elem->flags->G);
-}
-
-void                print_dirs(t_list *head)
-{
-    while (head)
-    {
-        printf("%s\n", (char*)head->content);
-        head = head->next;
+        sort_dirs(&head);
+        if (head->flags->R == 'R')
+        {
+            save_head = head;
+            while (save_head)
+            {
+                if (save_head->chmod[0] == 'd')
+                    run_ls(save_head->name, flags, 1);
+                save_head = save_head->next;
+            }
+        }
+        if (dir_count > 1)
+        {
+            ft_putstr(dirs);
+            ft_putstr(" :\n");
+        }
+        main_print(head);
+        free_t_dir(&head, 'B');
     }
 }
 
 int                 main(int argc, char **argv)
 {
-    t_dir           *head;
     t_flags         *flags;
     t_list          *dirs;
     t_list          *temp;
-    register short  i;
-
-    i = 1;
-    head = NULL;
+    int             dir_count;
+    
     flags = get_flags(argc, argv);
     dirs = get_dirs(argc, argv);
     check_names(dirs);
     temp = dirs;
+    dir_count = dirs_count(dirs);
     while (dirs)
     {
-        head = get_dir_list((char*)dirs->content, flags);
-        if (head)
-        {
-            sort_dirs(&head, 'S');
-            print_flags(head);
-            free_t_dir(&head);
-        }
+        run_ls((char*)(dirs->content), &flags, dir_count);
         dirs = dirs->next;
     }
     ft_free_lst(&temp);
     ft_memdel((void**)&flags);
+    
     return (0);
 }

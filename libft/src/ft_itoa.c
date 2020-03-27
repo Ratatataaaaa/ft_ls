@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/20 13:22:16 by bdrinkin          #+#    #+#             */
-/*   Updated: 2019/11/04 23:06:39 by bdrinkin         ###   ########.fr       */
+/*   Updated: 2020/03/26 14:09:29 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char		*ft_itoa(int n)
 	char	*ss;
 	int		len;
 
+	ss = NULL;
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	len = ft_nbr_del(n);
