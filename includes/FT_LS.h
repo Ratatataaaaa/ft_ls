@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/27 15:27:28 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/13 22:31:22 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,23 +49,27 @@ typedef struct          s_dir
     char                *time_mod;
     char                *time_get;
     char                *time_cre;
+    time_t              timemod_d;
+    time_t              timeget_d;
+    time_t              timecre_d;
     char                *name;
     blkcnt_t            blocks;
     t_flags             *flags;
     off_t               size;
     nlink_t             links;
+    int                 count_dirs;
     struct s_dir        *next;
 }                       t_dir;        
 typedef struct stat     t_stat;
 typedef struct dirent   t_dirent;
 
 int                 get_stat(t_dir *dir);
-t_dir               *get_dir_list(char *path, t_flags *flags);
+t_dir               *get_dir_list(char *path, t_flags *flag);
 char                *get_user_name(uid_t uid);
 char                *get_group(gid_t gid);
 char                *get_chmod(mode_t mode);
 char                *get_time(time_t *time_);
-void                free_t_dir(t_dir **src, char one);
+void                free_t_dir(t_dir **src);
 void                no_such_file(char *path);
 t_flags             *get_flags(int argc, char **argv);
 void                get_all_time(t_dir *elem, t_stat *stat_);
@@ -78,6 +82,7 @@ blkcnt_t            summ_blocks(t_dir *head);
 void				simple_print(t_dir *head, char all_mod);
 void				all_print(t_dir *head, char all_mod);
 void				main_print(t_dir *head);
-int                 dirs_count(t_list *head);
-void                run_ls(char *dirs, t_flags **flags, int dir_count);
+int                 dirs_count(t_list *head, t_dir *start);
+void                run_ls(char *path, t_flags **flags);
+char				*get_full_name(char *path_name, char *name);
 #endif

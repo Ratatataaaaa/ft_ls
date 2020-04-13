@@ -6,13 +6,13 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/27 16:24:59 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/13 22:47:28 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
 
-static char         *get_full_name(char *path_name, char *name)
+char				*get_full_name(char *path_name, char *name)
 {
 	char            *full_name;
 
@@ -20,7 +20,8 @@ static char         *get_full_name(char *path_name, char *name)
 	if ((full_name = ft_strnew(PATH_MAX)))
 	{
 		ft_strncpy(full_name, path_name, PATH_MAX);
-		ft_strncat(full_name, "/", PATH_MAX);
+		if(full_name[ft_strlen(full_name) - 1] != '/')
+			ft_strncat(full_name, "/", PATH_MAX);
 		ft_strncat(full_name, name, PATH_MAX);
 	}
 	return (full_name);
@@ -71,7 +72,7 @@ static void         push_back(t_dir *head, t_dir *new_elem)
 	}
 }
 
-void                free_t_dir(t_dir **src, char one)
+void                free_t_dir(t_dir **src)
 {
 	t_dir           *head;
 	t_dir           *to_del;
@@ -88,11 +89,6 @@ void                free_t_dir(t_dir **src, char one)
 		ft_memdel((void**)&head->time_mod);
 		head = head->next;
 		ft_memdel((void**)&to_del);
-		if (one == 'A')
-		{
-			*src = head;
-			break;
-		}
 	}
 }
 
@@ -115,12 +111,10 @@ t_dir               *get_dir_list(char *path, t_flags *flags)
 				if ((new_e = new_t_dir(dirent_->d_name, path, flags)))
 					push_back(head, new_e);
 				else
-					free_t_dir(&head, 'B');
+					free_t_dir(&head);
 			}
 		}
 		closedir(dir);
 	}
-	//else
-		//no_such_file(path);
 	return (head);
 }

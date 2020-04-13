@@ -6,7 +6,7 @@
 #    By: cwing <cwing@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/03 12:54:38 by cwing             #+#    #+#              #
-#    Updated: 2020/03/04 16:04:49 by cwing            ###   ########.fr        #
+#    Updated: 2020/04/13 20:43:04 by cwing            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,8 +32,8 @@ RESET = \033[0m
 all: $(NAME)
 
 $(NAME):
-	@$(CC) $(FLAGS) $(SRC) -o $(NAME) $(LIBRARIES_MAC)
 	@echo "\n$(NAME): $(GREEN)Создание исполняемого файла$(RESET)"
+	@$(CC) $(FLAGS) $(SRC) -o $(NAME) $(LIBRARIES_MAC)
 	@echo "$(NAME): $(GREEN)$(NAME) Готово$(RESET)"
 
 $(LIBFT):
