@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:22:41 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/27 17:43:00 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/27 17:53:38 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # define YWL_T		"\x1b[33m"
 # define STD_T		"\x1b[0m"
 
-# ifndef _POSIX_SOURCE
+# ifndef __APPLE__
 	struct timespec st_atimespec;
 	struct timespec st_mtimespec;
 	struct timespec st_ctimespec;
