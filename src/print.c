@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/13 22:31:14 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/27 17:45:07 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void			print_line(t_dir * head)
 	ft_putchar('\t');
 	ft_printnum((int)head->size);
 	ft_putchar('\t');
-	ft_putstr(head->time_get);
+	ft_putstr(head->time_mod);
 	ft_putchar('\t');
 	print_name(head);
 	ft_putchar('\n');
