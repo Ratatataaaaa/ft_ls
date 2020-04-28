@@ -6,13 +6,25 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/13 23:41:53 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/28 14:53:16 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
 
-void                recurs_run(t_dir *head);
+void                print_dirs_in_t_dir(t_dir *head)
+{
+    while (head)
+    {
+        ft_putstr(head->name);
+        if (head->name[0] == '\0')
+            ft_putstr("FUCK!");
+        ft_putstr(" = ");
+        head = head->next;
+    }
+    ft_putchar('\n');
+    sleep(2);
+}
 
 void                run_ls(char *path, t_flags **flags)
 {
@@ -21,6 +33,8 @@ void                run_ls(char *path, t_flags **flags)
     char            *n_path;
     
     n_path = NULL;
+    save_head = NULL;
+    head = NULL;
     head = get_dir_list(path, *flags);
     if (head)
     {
@@ -33,8 +47,11 @@ void                run_ls(char *path, t_flags **flags)
             save_head = head;
             while (save_head != NULL)
             {
-                if (save_head->chmod[0] == 'd' && ft_strcmp(save_head->name, ".") && ft_strcmp(save_head->name, ".."))
+                if (save_head->chmod[0] == 'd' && ft_strcmp(save_head->name, ".") &&
+                    ft_strcmp(save_head->name, ".."))
                 {
+                    if (save_head->name[0] == '\0')
+                        sleep(2);
                     n_path = get_full_name(path, save_head->name);
                     run_ls(n_path, flags);
                     ft_memdel((void**)&n_path);
@@ -63,10 +80,10 @@ int                 main(int argc, char **argv)
     }
     ft_free_lst(&save);
     ft_memdel((void**)&flags);
-    // while (argc)
-    // {
-    //     /* code */
-    // }
+    while (argc)
+    {
+        /* code */
+    }
 
     return (0);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/22 01:53:27 by bdrinkin          #+#    #+#             */
-/*   Updated: 2020/03/16 18:52:42 by cwing            ###   ########.fr       */
+/*   Created: 2019/09/22 01:53:27 by cwing             #+#    #+#             */
+/*   Updated: 2020/04/27 19:09:04 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void				ft_lst_push_back(t_list **alst,
 	t_list			*find;
 
 	find = *alst;
+	temp = NULL;
 	if (alst && (temp = ft_lstnew(content, content_size)))
 	{
 		while (find->next)

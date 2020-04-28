@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/13 22:47:28 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/28 14:51:10 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,16 @@ static t_dir        *new_t_dir(char *name, char *path, t_flags *flags)
 	t_dir           *new_elem;
 	char            *full_name;
 
+	stat_ = NULL;
+	new_elem = NULL;
+	full_name = NULL;
 	full_name = get_full_name(path, name);
 	if ((stat_ = malloc(sizeof(t_stat))) &&
 		(new_elem = malloc(sizeof(t_dir))) &&
 		(lstat(full_name, stat_) == 0))
 	{
-		new_elem->name = name;
+		new_elem->name = ft_strnew(MAXNAMLEN);
+		ft_strncpy(new_elem->name, name, MAXNAMLEN);
 		new_elem->links = stat_->st_nlink;
 		new_elem->u_name = get_user_name(stat_->st_uid);
 		new_elem->u_group = get_group(stat_->st_gid);
@@ -50,10 +54,7 @@ static t_dir        *new_t_dir(char *name, char *path, t_flags *flags)
 		new_elem->blocks = stat_->st_blocks;
 	}
 	else
-	{
-		ft_memdel((void**)&stat_);
 		ft_memdel((void**)&new_elem);
-	}
 	ft_memdel((void**)&full_name);
 	ft_memdel((void**)&stat_);
 	return (new_elem);
@@ -87,9 +88,11 @@ void                free_t_dir(t_dir **src)
 		ft_memdel((void**)&head->time_cre);
 		ft_memdel((void**)&head->time_get);
 		ft_memdel((void**)&head->time_mod);
+		ft_memdel((void**)&head->name);
 		head = head->next;
 		ft_memdel((void**)&to_del);
 	}
+	src = NULL;
 }
 
 t_dir               *get_dir_list(char *path, t_flags *flags)
