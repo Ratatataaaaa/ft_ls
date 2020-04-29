@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/27 18:40:32 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/29 19:21:23 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void                get_all_time(t_dir *elem, t_stat *stat_)
     elem->timemod_d = stat_->st_mtime;
 }
 
-void                check_names(t_list *head)
+void                check_names(t_list *head, t_flags **flags)
 {
     DIR             *dir;
 
@@ -38,16 +38,12 @@ void                check_names(t_list *head)
     {
         dir = opendir((char*)(head->content));
         if (dir)
-        {
 			closedir(dir);
-            head = head->next;
-            continue;
-        }
+        else if (open_single_file((char*)(head->content), flags))
+            ft_isdigit('A');
         else
-        {
             no_such_file((char*)(head->content));
-            head = head->next;
-        }
+        head = head->next;
     }
 }
 
@@ -62,4 +58,22 @@ blkcnt_t            summ_blocks(t_dir *head)
         head = head->next;
     }
     return (summ);
+}
+
+int                 open_single_file(char *path, t_flags **flags)
+{
+    t_dir           *single;
+
+    single = NULL;
+    if (path[0] == '/')
+        single = new_t_dir(path, "", flags);
+    else
+        single = new_t_dir(path, "./", flags);
+    if (single)
+    {
+        main_print(single);
+        free_t_dir(&single);
+        return (1);
+    }
+    return (0);
 }

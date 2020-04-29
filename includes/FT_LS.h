@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/13 22:31:22 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/29 18:54:58 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@
 # include <grp.h>
 # include <time.h>
 # include "OT_DEF.h"
-
-// TO DELL
-# include <stdio.h>
 
 typedef struct          s_slags
 {
@@ -64,7 +61,7 @@ typedef struct stat     t_stat;
 typedef struct dirent   t_dirent;
 
 int                 get_stat(t_dir *dir);
-t_dir               *get_dir_list(char *path, t_flags *flag);
+t_dir               *get_dir_list(char *path, t_flags **flag);
 char                *get_user_name(uid_t uid);
 char                *get_group(gid_t gid);
 char                *get_chmod(mode_t mode);
@@ -76,7 +73,7 @@ void                get_all_time(t_dir *elem, t_stat *stat_);
 t_list              *get_dirs(int argc, char **argv);
 void                ft_free_lst(t_list **head);
 
-void                check_names(t_list *head);
+void                check_names(t_list *head, t_flags **flags);
 void                sort_dirs(t_dir **head);
 blkcnt_t            summ_blocks(t_dir *head);
 void				simple_print(t_dir *head, char all_mod);
@@ -85,4 +82,6 @@ void				main_print(t_dir *head);
 int                 dirs_count(t_list *head, t_dir *start);
 void                run_ls(char *path, t_flags **flags);
 char				*get_full_name(char *path_name, char *name);
+int                 open_single_file(char *path, t_flags **flags);
+t_dir				*new_t_dir(char *name, char *path, t_flags **flags);
 #endif

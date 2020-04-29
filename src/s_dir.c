@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/28 14:51:10 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/29 19:17:51 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,13 @@ char				*get_full_name(char *path_name, char *name)
 	if ((full_name = ft_strnew(PATH_MAX)))
 	{
 		ft_strncpy(full_name, path_name, PATH_MAX);
-		if(full_name[ft_strlen(full_name) - 1] != '/')
-			ft_strncat(full_name, "/", PATH_MAX);
+		ft_strncat(full_name, "/", PATH_MAX);
 		ft_strncat(full_name, name, PATH_MAX);
 	}
 	return (full_name);
 }
 
-static t_dir        *new_t_dir(char *name, char *path, t_flags *flags)
+t_dir				*new_t_dir(char *name, char *path, t_flags **flags)
 {
 	t_stat          *stat_;
 	t_dir           *new_elem;
@@ -50,7 +49,7 @@ static t_dir        *new_t_dir(char *name, char *path, t_flags *flags)
 		new_elem->next = NULL;
 		new_elem->size = stat_->st_size;
 		get_all_time(new_elem, stat_);
-		new_elem->flags = flags;
+		new_elem->flags = *flags;
 		new_elem->blocks = stat_->st_blocks;
 	}
 	else
@@ -95,7 +94,7 @@ void                free_t_dir(t_dir **src)
 	src = NULL;
 }
 
-t_dir               *get_dir_list(char *path, t_flags *flags)
+t_dir               *get_dir_list(char *path, t_flags **flags)
 {
 	t_dir           *head;
 	t_dir           *new_e;

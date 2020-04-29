@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/28 14:53:16 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/29 19:02:45 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void                run_ls(char *path, t_flags **flags)
     n_path = NULL;
     save_head = NULL;
     head = NULL;
-    head = get_dir_list(path, *flags);
+    head = get_dir_list(path, flags);
     if (head)
     {
         sort_dirs(&head);
@@ -72,7 +72,7 @@ int                 main(int argc, char **argv)
     flags = get_flags(argc, argv);
     dirs = get_dirs(argc, argv);
     save = dirs;
-    check_names(dirs);
+    check_names(dirs, &flags);
     while (dirs)
     {
         run_ls((void*)dirs->content, &flags);
@@ -80,10 +80,10 @@ int                 main(int argc, char **argv)
     }
     ft_free_lst(&save);
     ft_memdel((void**)&flags);
-    while (argc)
-    {
-        /* code */
-    }
+    // while (argc)
+    // {
+    //     /* code */
+    // }
 
     return (0);
 }
