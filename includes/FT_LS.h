@@ -12,7 +12,8 @@
 
 #ifndef FT_LS_H
 # define FT_LS_H
-# include "../libft/includes/libft.h"
+// # include "../libft/includes/libft.h"
+#include "../printf/ft_printf.h"
 # include <sys/types.h>
 # include <dirent.h>
 # include <limits.h>
@@ -81,8 +82,9 @@ void				simple_print(t_dir *head, char all_mod);
 void				all_print(t_dir *head, char all_mod);
 void				main_print(t_dir *head);
 int                 dirs_count(t_list *head, t_dir *start);
-void                run_ls(char *path, t_flags **flags);
+void                run_ls(char *path, t_flags **flags, int argc);
 char				*get_full_name(char *path_name, char *name);
 int                 open_single_file(char *path, t_flags **flags);
 t_dir				*new_t_dir(char *name, char *path, t_flags **flags);
+void				print_one(t_dir *head, char all_mod);
 #endif

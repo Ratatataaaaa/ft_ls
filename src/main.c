@@ -35,7 +35,7 @@ void                run_ls(char *path, t_flags **flags, int argc)
     n_path = NULL;
     save_head = NULL;
     head = NULL;
-    head = get_dir_list(path, *flags);
+    head = get_dir_list(path, flags);
     if (head)
     {
         sort_dirs(&head);
@@ -78,7 +78,7 @@ int                 main(int argc, char **argv)
     flags = get_flags(argc, argv);
     dirs = get_dirs(argc, argv);
     save = dirs;
-    check_names(dirs);
+    check_names(dirs, &flags);
     while (dirs)
     {
         run_ls((void*)dirs->content, &flags, argc);
