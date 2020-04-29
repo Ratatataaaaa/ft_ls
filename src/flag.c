@@ -16,7 +16,7 @@ int                 is_flag(char flag)
 {
 	if(flag == 'l' || flag =='R' || flag == 'a' || flag == 'r' || flag == 't' ||
 		flag == 'u' || flag == 'f' || flag == 'g' ||flag == 'd' || flag == 'G' ||
-		flag == 'S')
+		flag == 'S' || flag == '1')
 		return(1);
 	else
 		return(0);
@@ -35,6 +35,7 @@ void                null_flags(t_flags  *flags)
 	flags->t = '0';
 	flags->u = '0';
 	flags->S = '0';
+	flags->one = '0';
 }
 
 void                add_flag(char *arg, t_flags *flags)
@@ -55,6 +56,7 @@ void                add_flag(char *arg, t_flags *flags)
 		flags->d = (arg[i] == 'd') ? 'd' : flags->d;
 		flags->G = (arg[i] == 'G') ? 'G' : flags->G;
 		flags->S = (arg[i] == 'S') ? 'S' : flags->S;
+		flags->one = (arg[i] == '1') ? '1' : flags->one;
 	}
 }
 

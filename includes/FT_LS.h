@@ -35,6 +35,7 @@ typedef struct          s_slags
     char                d;
     char                G;
     char                S;
+	char				one;
 }                       t_flags;
 
 

@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/29 19:02:45 by cwing            ###   ########.fr       */
+/*   Updated: 2020/04/28 14:53:16 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void                print_dirs_in_t_dir(t_dir *head)
     sleep(2);
 }
 
-void                run_ls(char *path, t_flags **flags)
+void                run_ls(char *path, t_flags **flags, int argc)
 {
     t_dir           *head;
     t_dir           *save_head;
@@ -35,12 +35,18 @@ void                run_ls(char *path, t_flags **flags)
     n_path = NULL;
     save_head = NULL;
     head = NULL;
-    head = get_dir_list(path, flags);
+    head = get_dir_list(path, *flags);
     if (head)
     {
         sort_dirs(&head);
-        ft_putstr(path);
-        ft_putchar('\n');
+		if (argc > 2 && flags)
+		{
+			ft_putstr(path);
+			if (path[ft_strlen(path) - 1] != '/')
+				ft_putstr("/:\n");
+			else
+				ft_putstr(":\n");
+		}
         main_print(head);
         if (head->flags->R == 'R')
         {
@@ -53,7 +59,7 @@ void                run_ls(char *path, t_flags **flags)
                     if (save_head->name[0] == '\0')
                         sleep(2);
                     n_path = get_full_name(path, save_head->name);
-                    run_ls(n_path, flags);
+                    run_ls(n_path, flags, argc);
                     ft_memdel((void**)&n_path);
                 }
                 save_head = save_head->next;
@@ -72,10 +78,10 @@ int                 main(int argc, char **argv)
     flags = get_flags(argc, argv);
     dirs = get_dirs(argc, argv);
     save = dirs;
-    check_names(dirs, &flags);
+    check_names(dirs);
     while (dirs)
     {
-        run_ls((void*)dirs->content, &flags);
+        run_ls((void*)dirs->content, &flags, argc);
         dirs = dirs->next;
     }
     ft_free_lst(&save);
@@ -85,5 +91,4 @@ int                 main(int argc, char **argv)
     //     /* code */
     // }
 
-    return (0);
 }
