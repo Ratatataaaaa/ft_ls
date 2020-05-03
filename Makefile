@@ -6,7 +6,7 @@
 #    By: cwing <cwing@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/03 12:54:38 by cwing             #+#    #+#              #
-#    Updated: 2020/04/13 20:43:04 by cwing            ###   ########.fr        #
+#    Updated: 2020/05/02 21:01:26 by cwing            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ src/main.c \
 src/print.c \
 src/s_dir.c \
 src/sort_list.c \
-src/utils.c
+src/utils.c \
+src/utils2.c
 
 
 all: $(NAME)

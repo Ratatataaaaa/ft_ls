@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/04/29 18:54:58 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/02 21:10:54 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 // # include "../libft/includes/libft.h"
 #include "../printf/ft_printf.h"
 # include <sys/types.h>
+# include <sys/xattr.h>
+# include <sys/acl.h>
 # include <dirent.h>
 # include <limits.h>
 # include <sys/stat.h>
@@ -48,6 +50,7 @@ typedef struct          s_dir
     char                *time_mod;
     char                *time_get;
     char                *time_cre;
+    char                *linkpath;
     time_t              timemod_d;
     time_t              timeget_d;
     time_t              timecre_d;
@@ -87,4 +90,5 @@ char				*get_full_name(char *path_name, char *name);
 int                 open_single_file(char *path, t_flags **flags);
 t_dir				*new_t_dir(char *name, char *path, t_flags **flags);
 void				print_one(t_dir *head, char all_mod);
+char                get_file_acl(char *path);
 #endif

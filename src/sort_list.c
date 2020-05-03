@@ -6,15 +6,15 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 21:47:15 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/29 15:19:11 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/03 22:27:30 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
 
-static void         sort_d_asci(t_dir **head)
+static void			sort_d_asci(t_dir **head)
 {
-	t_dir           *temp_a;
+	t_dir			*temp_a;
 	t_dir			*temp_b;
 	t_dir			*back;
 
@@ -58,7 +58,7 @@ static void			sort_d_rev(t_dir **head)
 
 static void			sort_d_time(t_dir **head)
 {
-	t_dir           *temp_a;
+	t_dir			*temp_a;
 	t_dir			*temp_b;
 	t_dir			*back;
 
@@ -82,7 +82,7 @@ static void			sort_d_time(t_dir **head)
 	}
 }
 
-void                sort_dirs(t_dir **head)
+void				sort_dirs(t_dir **head)
 {
 	if ((*head)->flags->f == '0')
 	{

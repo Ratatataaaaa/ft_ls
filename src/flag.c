@@ -6,23 +6,23 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:47:56 by cwing             #+#    #+#             */
-/*   Updated: 2020/03/26 23:46:57 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/03 22:02:59 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
 
-int                 is_flag(char flag)
+int					is_flag(char flag)
 {
-	if(flag == 'l' || flag =='R' || flag == 'a' || flag == 'r' || flag == 't' ||
-		flag == 'u' || flag == 'f' || flag == 'g' ||flag == 'd' || flag == 'G' ||
-		flag == 'S' || flag == '1')
-		return(1);
+	if (flag == 'l' || flag == 'R' || flag == 'a' || flag == 'r' ||
+	flag == 'u' || flag == 'f' || flag == 'g' || flag == 'd' || flag == 'G' ||
+	flag == 'S' || flag == '1' || flag == 't')
+		return (1);
 	else
-		return(0);
+		return (0);
 }
 
-void                null_flags(t_flags  *flags)
+void				null_flags(t_flags *flags)
 {
 	flags->a = '0';
 	flags->d = '0';
@@ -38,9 +38,9 @@ void                null_flags(t_flags  *flags)
 	flags->one = '0';
 }
 
-void                add_flag(char *arg, t_flags *flags)
+void				add_flag(char *arg, t_flags *flags)
 {
-	int             i;
+	int				i;
 
 	i = 0;
 	while (arg[++i])
@@ -60,23 +60,21 @@ void                add_flag(char *arg, t_flags *flags)
 	}
 }
 
-t_flags             *get_flags(int argc, char **argv)
+t_flags				*get_flags(int argc, char **argv)
 {
-	t_flags         *flags;
-	int             i;
+	t_flags			*flags;
+	int				i;
 
 	i = 0;
-	if((flags = malloc(sizeof(t_flags))))
+	if ((flags = malloc(sizeof(t_flags))))
 	{
 		null_flags(flags);
-		while(++i < argc)
+		while (++i < argc)
 		{
 			if ((argv[i][0] == '-') && is_flag(argv[i][1]))
 				add_flag(argv[i], flags);
 			else
-			{
 				continue;
-			}
 		}
 	}
 	return (flags);

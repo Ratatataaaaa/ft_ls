@@ -64,7 +64,6 @@ void						hexadecimal(long long int a, int trig, t_struct *st);
 void						specif_di(t_struct *st, long long int a, char *format);
 void						specif_uoxX(t_struct *st, char *format, unsigned long long int a);
 int							length(char *format, t_struct *st, va_list ap);
-void						flags(char *format, t_struct *st, va_list ap);
 void						ft_print(char *format, t_struct *st);
 void						width(char *format, t_struct *st);
 void						null_print(t_struct *st);
