@@ -35,16 +35,16 @@ src/print.c \
 src/s_dir.c \
 src/sort_list.c \
 src/utils.c \
-src/utils2.c
+src/utils2.c \
+F_flag/c
 
 
 all: $(NAME)
 
 $(NAME):
 	@echo "\n$(NAME): $(GREEN)Создание исполняемого файла$(RESET)"
-	@make -C printf/libft/
-	@make -C printf
-	@gcc -g $(CFLAG) $(FILES) printf/libftprintf.a -o $(NAME)
+	@make -C libft
+	@gcc $(CFLAGS) $(FILES) libft/libft.a -o $(NAME)
 	@echo "$(NAME): $(GREEN)$(NAME) Готово$(RESET)"
 
 $(LIBFT):
