@@ -7,4 +7,6 @@ void	F_print(t_dir *head)
 		ft_putstr("/");
 	else if (stat(head->name, &buf) == 0 && buf.st_mode & S_IXUSR)
 		ft_putchar('*');
+	else if (head->cmod[0] == 'l')
+		ft_putchar('@');
 }
