@@ -58,6 +58,8 @@ void				simple_print(t_dir *head, char all_mod)
 			continue;
 		}
 		print_name(head);
+		if (head->flags->F == 'F')
+			F_print(head);
 		ft_putchar('\t');
 		head = head->next;
 	}
@@ -89,6 +91,8 @@ static void			print_line(t_dir *head)
 		ft_putstr(" -> ");
 		ft_putstr(head->linkpath);
 	}
+	if (head->flags->F == 'F' && head->chmod[0] != 'l')
+		F_print(head);
 	ft_putchar('\n');
 }
 
