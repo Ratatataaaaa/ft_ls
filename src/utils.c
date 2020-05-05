@@ -54,7 +54,12 @@ blkcnt_t			summ_blocks(t_dir *head)
 	summ = 0;
 	while (head)
 	{
-		summ += head->blocks;
+		if (head->name[0] =='.')
+		{
+			head = head->next;
+			continue;
+		}
+		summ += (head->blocks / 2);
 		head = head->next;
 	}
 	return (summ);
