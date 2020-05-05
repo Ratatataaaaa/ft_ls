@@ -36,7 +36,7 @@ src/s_dir.c \
 src/sort_list.c \
 src/utils.c \
 src/utils2.c \
-F_flag/c
+src/F_flag/c
 
 
 all: $(NAME)
