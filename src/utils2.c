@@ -6,28 +6,11 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 20:25:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/03 22:28:19 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/05 17:12:22 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
-
-char				get_file_acl(char *path)
-{
-	acl_t			acl;
-	char			buf[101];
-
-	acl = NULL;
-	if (listxattr(path, buf, sizeof(buf), XATTR_NOFOLLOW) > 0)
-		return ('@');
-	if ((acl = acl_get_link_np(path, ACL_TYPE_EXTENDED)))
-	{
-		acl_free(acl);
-		acl = NULL;
-		return ('+');
-	}
-	return (' ');
-}
 
 char				*get_full_name(char *path_name, char *name)
 {

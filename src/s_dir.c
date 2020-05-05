@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/03 22:25:40 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/05 17:13:25 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_dir				*new_t_dir(char *name, char *path, t_flags **flags)
 		new_elem->u_name = get_user_name(stat_->st_uid);
 		new_elem->u_group = get_group(stat_->st_gid);
 		new_elem->chmod = get_chmod(stat_->st_mode);
-		new_elem->chmod[10] = get_file_acl(full_name);
+		new_elem->chmod[10] = ' ';
 		if (new_elem->chmod[0] == 'l')
 		{
 			if ((new_elem->linkpath = ft_strnew(LINK_MAX + 1)) && readlink(full_name, new_elem->linkpath, LINK_MAX) > 0)
