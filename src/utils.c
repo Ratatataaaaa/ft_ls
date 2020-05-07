@@ -6,11 +6,11 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 16:56:01 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 19:22:37 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FT_LS.h"
+#include "../includes/ft_ls.h"
 
 void				no_such_file(char *path)
 {
@@ -50,7 +50,7 @@ blkcnt_t			summ_blocks(t_dir *head)
 	summ = 0;
 	while (head)
 	{
-		if (head->name[0] =='.')
+		if (head->name[0] == '.')
 		{
 			head = head->next;
 			continue;

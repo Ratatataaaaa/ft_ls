@@ -6,11 +6,11 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 20:25:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/05 17:12:22 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 19:22:43 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FT_LS.h"
+#include "../includes/ft_ls.h"
 
 char				*get_full_name(char *path_name, char *name)
 {

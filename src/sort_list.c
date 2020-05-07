@@ -6,11 +6,11 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 21:47:15 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 13:41:44 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 19:22:30 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FT_LS.h"
+#include "../includes/ft_ls.h"
 
 static void			sort_d_asci(t_dir **head)
 {

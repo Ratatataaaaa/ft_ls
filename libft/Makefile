@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+         #
+#    By: cwing <cwing@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/07 21:57:42 by bdrinkin          #+#    #+#              #
-#    Updated: 2020/02/10 22:41:14 by bdrinkin         ###   ########.fr        #
+#    Updated: 2020/05/07 17:48:29 by cwing            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,12 +108,12 @@ all: $(NAME)
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
-	@echo "\n$(NAME): $(GREEN)Созданы объектные файлы$(RESET)"
-	@echo "$(NAME): $(GREEN)$(NAME) Был создан$(RESET)"
+	@echo "\n$(NAME):\t$(GREEN)Созданы объектные файлы$(RESET)"
+	@echo "$(NAME):\t$(GREEN)$(NAME) Был создан$(RESET)"
 
 $(OBJECTS_DIRECTORY):
 	@mkdir -p $(OBJECTS_DIRECTORY)
-	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) Был создан$(RESET)"
+	@echo "$(NAME):\t$(GREEN)$(OBJECTS_DIRECTORY) Был создан$(RESET)"
 
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
 	@$(CC) $(FLAGS) $(INCLUDES) $< -o $@
@@ -121,12 +121,12 @@ $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
 
 clean:
 	@rm -rf $(OBJECTS_DIRECTORY)
-	@echo "$(NAME): $(RED)$(OBJECTS_DIRECTORY) Был удален$(RESET)"
-	@echo "$(NAME): $(RED)Объектные файлы были удалены$(RESET)"
+	@echo "$(NAME):\t$(RED)$(OBJECTS_DIRECTORY) Был удален$(RESET)"
+	@echo "$(NAME):\t$(RED)Объектные файлы были удалены$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME): $(RED)$(NAME) Был удален$(RESET)"
+	@echo "$(NAME):\t$(RED)$(NAME) Был удален$(RESET)"
 
 re:
 	@$(MAKE) fclean

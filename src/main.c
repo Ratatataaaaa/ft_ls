@@ -6,11 +6,11 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 17:14:53 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 19:33:14 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FT_LS.h"
+#include "../includes/ft_ls.h"
 
 static void			recurs_run(t_dir *head, t_flags **flags, char *path, int a)
 {
@@ -50,7 +50,7 @@ void				run_ls(char *path, t_flags **flags, int argc)
 				ft_putstr(":\n");
 		}
 		main_print(head);
-		if (head->flags->R == 'R')
+		if (head->flags->rr == 'R')
 		{
 			recurs_run(head, flags, path, argc);
 		}
@@ -66,7 +66,7 @@ int					main(int argc, char **argv)
 
 	flags = get_flags(argc, argv);
 	if (!flags)
-		return(EXIT_SUCCESS);
+		return (EXIT_SUCCESS);
 	dirs = get_dirs(argc, argv);
 	save = dirs;
 	check_names(dirs, &flags);
