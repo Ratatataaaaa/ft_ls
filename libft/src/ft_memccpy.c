@@ -3,29 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memccpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bdrinkin <bdrinkin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/11 23:45:11 by bdrinkin          #+#    #+#             */
-/*   Updated: 2019/11/04 23:07:04 by bdrinkin         ###   ########.fr       */
+/*   Created: 2019/09/11 23:45:11 by cwing             #+#    #+#             */
+/*   Updated: 2020/05/07 20:38:32 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memccpy(void *dst, const void *src, int c, size_t n)
+void						*ft_memccpy(void *dest, const void *src, int ch,
+										size_t size)
 {
-	size_t	i;
+	const unsigned char		*temp_src;
+	unsigned char			*temp_dest;
+	unsigned char			sh;
+	size_t					iter;
 
-	i = 0;
-	while (i < n)
+	iter = 0;
+	temp_src = src;
+	temp_dest = dest;
+	sh = (unsigned char)ch;
+	if ((int)size == 0)
+		return (NULL);
+	while (iter < size)
 	{
-		((unsigned char *)dst)[i] = ((unsigned char *)src)[i];
-		if (((unsigned char *)src)[i] == (unsigned char)c)
-		{
-			i++;
-			return (&dst[i]);
-		}
-		i++;
+		temp_dest[iter] = temp_src[iter];
+		if (temp_src[iter] == sh)
+			return ((void*)(dest + iter + 1));
+		iter++;
 	}
 	return (NULL);
 }
