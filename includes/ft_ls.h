@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 19:30:03 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 21:12:40 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@
 # define BLU_T			"\x1b[36m"
 # define YWL_T			"\x1b[33m"
 # define STD_T			"\x1b[0m"
+
+# ifndef LINK_MAX
+#  define LINK_MAX 32767
+# endif
+
+# ifndef MAXNAMLEN
+#  define MAXNAMLEN 255
+# endif
+
+# ifndef PATH_MAX
+#  define PATH_MAX 1024
+# endif
 
 typedef struct			s_slags
 {

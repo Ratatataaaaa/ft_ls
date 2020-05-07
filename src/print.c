@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 19:33:12 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 21:14:42 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void				simple_print(t_dir *head, char all_mod)
 			continue;
 		}
 		print_name(head);
-		if (head->flags->ff == 'F')
-			f_print(head);
 		ft_putchar('\t');
 		head = head->next;
 	}
