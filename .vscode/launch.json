@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/ft_ls",
-            "args": ["-la", "/sbin/kextload"],
+            "args": ["-la"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

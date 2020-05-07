@@ -6,11 +6,32 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 16:56:28 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 19:22:17 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FT_LS.h"
+#include "../includes/ft_ls.h"
+
+static void			up_t_dir(t_dir *new_elem, t_stat *stat_, char *full_name)
+{
+	new_elem->links = stat_->st_nlink;
+	new_elem->u_name = get_user_name(stat_->st_uid);
+	new_elem->u_group = get_group(stat_->st_gid);
+	new_elem->chmod = get_chmod(stat_->st_mode);
+	new_elem->chmod[10] = ' ';
+	new_elem->next = NULL;
+	new_elem->size = stat_->st_size;
+	get_all_time(new_elem, stat_);
+	new_elem->blocks = stat_->st_blocks;
+	if (new_elem->chmod[0] == 'l')
+	{
+		if ((new_elem->linkpath = ft_strnew(LINK_MAX + 1)) &&
+			readlink(full_name, new_elem->linkpath, LINK_MAX) > 0)
+			ft_isdigit('A');
+	}
+	else
+		new_elem->linkpath = NULL;
+}
 
 t_dir				*new_t_dir(char *name, char *path, t_flags **flags)
 {
@@ -26,25 +47,10 @@ t_dir				*new_t_dir(char *name, char *path, t_flags **flags)
 		(new_elem = malloc(sizeof(t_dir))) &&
 		(lstat(full_name, stat_) == 0))
 	{
+		up_t_dir(new_elem, stat_, full_name);
 		new_elem->name = ft_strnew(MAXNAMLEN);
 		ft_strncpy(new_elem->name, name, MAXNAMLEN);
-		new_elem->links = stat_->st_nlink;
-		new_elem->u_name = get_user_name(stat_->st_uid);
-		new_elem->u_group = get_group(stat_->st_gid);
-		new_elem->chmod = get_chmod(stat_->st_mode);
-		new_elem->chmod[10] = ' ';
-		if (new_elem->chmod[0] == 'l')
-		{
-			if ((new_elem->linkpath = ft_strnew(LINK_MAX + 1)) && readlink(full_name, new_elem->linkpath, LINK_MAX) > 0)
-				ft_isdigit('A');
-		}
-		else
-			new_elem->linkpath = NULL;
-		new_elem->next = NULL;
-		new_elem->size = stat_->st_size;
-		get_all_time(new_elem, stat_);
 		new_elem->flags = *flags;
-		new_elem->blocks = stat_->st_blocks;
 	}
 	else
 		ft_memdel((void**)&new_elem);

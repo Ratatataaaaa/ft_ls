@@ -6,11 +6,11 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 18:20:41 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 15:46:06 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 19:21:19 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FT_LS.h"
+#include "../includes/ft_ls.h"
 
 void				ft_lst_push_back_(t_list **head, t_list *new_elem)
 {

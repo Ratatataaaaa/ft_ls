@@ -6,60 +6,11 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 17:08:00 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 19:33:12 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/FT_LS.h"
-
-void	F_print(t_dir *head)
-{
-	if (head->chmod[0] == 'd')
-		ft_putchar('/');
-	else if (head->chmod[0] == 'l')
-		ft_putchar('@');
-	else if (head->chmod[3] == 'x' || head->chmod[6] == 'x' ||
-			head->chmod[9] == 'x')
-		ft_putchar('*');
-}
-
-static void			ft_putstr_c(char *src, char *color)
-{
-	ft_putstr(color);
-	ft_putstr(src);
-	ft_putstr(STD_T);
-}
-
-static void			ft_printnum(int num)
-{
-	char			*buff;
-
-	buff = NULL;
-	if ((buff = ft_itoa(num)))
-		ft_putstr(buff);
-	ft_memdel((void**)&buff);
-}
-
-static void			print_name(t_dir *head)
-{
-	if (head->flags->G == 'G')
-	{
-		if (head->chmod[0] == 'd')
-			ft_putstr_c(head->name, BLU_T);
-		else if (head->chmod[0] == '-' &&
-		(head->chmod[3] == 'x' || head->chmod[6] == 'x' ||
-		head->chmod[9] == 'x'))
-			ft_putstr_c(head->name, GRE_T);
-		else if (head->chmod[0] == 'l')
-			ft_putstr_c(head->name, YWL_T);
-		else
-			ft_putstr_c(head->name, STD_T);
-	}
-	else
-		ft_putstr(head->name);
-	if (head->flags->F == 'F')
-		F_print(head);
-}
+#include "../includes/ft_ls.h"
 
 void				simple_print(t_dir *head, char all_mod)
 {
@@ -71,8 +22,8 @@ void				simple_print(t_dir *head, char all_mod)
 			continue;
 		}
 		print_name(head);
-		if (head->flags->F == 'F')
-			F_print(head);
+		if (head->flags->ff == 'F')
+			f_print(head);
 		ft_putchar('\t');
 		head = head->next;
 	}
