@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/03 22:16:29 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 17:14:53 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int					main(int argc, char **argv)
 	t_list			*save;
 
 	flags = get_flags(argc, argv);
+	if (!flags)
+		return(EXIT_SUCCESS);
 	dirs = get_dirs(argc, argv);
 	save = dirs;
 	check_names(dirs, &flags);
@@ -75,4 +77,5 @@ int					main(int argc, char **argv)
 	}
 	ft_free_lst(&save);
 	ft_memdel((void**)&flags);
+	return (EXIT_SUCCESS);
 }

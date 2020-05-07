@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 21:47:15 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/03 22:27:30 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 13:41:44 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,15 +84,12 @@ static void			sort_d_time(t_dir **head)
 
 void				sort_dirs(t_dir **head)
 {
-	if ((*head)->flags->f == '0')
+	sort_d_asci(head);
+	if ((*head)->flags->r == 'r')
+		sort_d_rev(head);
+	else if ((*head)->flags->t == 't')
 	{
-		sort_d_asci(head);
-		if ((*head)->flags->r == 'r')
-			sort_d_rev(head);
-		else if ((*head)->flags->t == 't')
-		{
-			sort_d_time(head);
-			sort_d_rev(head);
-		}
+		sort_d_time(head);
+		sort_d_rev(head);
 	}
 }
