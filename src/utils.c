@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/03 21:53:26 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 16:56:01 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,7 @@ void				no_such_file(char *path)
 
 void				get_all_time(t_dir *elem, t_stat *stat_)
 {
-	elem->time_cre = get_time(&stat_->st_ctime);
-	elem->time_get = get_time(&stat_->st_atime);
 	elem->time_mod = get_time(&stat_->st_mtime);
-	elem->timecre_d = stat_->st_ctime;
-	elem->timeget_d = stat_->st_atime;
 	elem->timemod_d = stat_->st_mtime;
 }
 
@@ -59,7 +55,7 @@ blkcnt_t			summ_blocks(t_dir *head)
 			head = head->next;
 			continue;
 		}
-		summ += (head->blocks / 2);
+		summ += head->blocks;
 		head = head->next;
 	}
 	return (summ);

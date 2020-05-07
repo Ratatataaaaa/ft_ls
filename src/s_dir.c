@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/05 17:13:25 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 16:56:28 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ void				free_t_dir(t_dir **src)
 		ft_memdel((void**)&head->chmod);
 		ft_memdel((void**)&head->u_group);
 		ft_memdel((void**)&head->u_name);
-		ft_memdel((void**)&head->time_cre);
-		ft_memdel((void**)&head->time_get);
 		ft_memdel((void**)&head->time_mod);
 		ft_memdel((void**)&head->name);
 		ft_memdel((void**)&head->linkpath);

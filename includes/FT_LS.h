@@ -6,62 +6,58 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/02 21:10:54 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 17:21:58 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
-// # include "../libft/includes/libft.h"
-#include "../printf/ft_printf.h"
+# include "../libft/includes/libft.h"
 # include <sys/types.h>
-# include <sys/xattr.h>
-# include <sys/acl.h>
 # include <dirent.h>
 # include <limits.h>
 # include <sys/stat.h>
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
-# include "OT_DEF.h"
+
+# define RED_T		"\x1b[31m"
+# define GRE_T		"\x1b[32m"
+# define BLU_T		"\x1b[36m"
+# define YWL_T		"\x1b[33m"
+# define STD_T		"\x1b[0m"
 
 typedef struct          s_slags
 {
-    char                l;
-    char                R;
-    char                a;
-    char                r;
-    char                t;
-    char                u;
-    char                f;
-    char                g;
-    char                d;
-    char                G;
-    char                S;
+	char                l;
+	char                R;
+	char                a;
+	char                r;
+	char                t;
+	char                G;
+	char                F;
 	char				one;
+	char                illegal;
 }                       t_flags;
 
 
 typedef struct          s_dir
 {
-    char                *chmod;
-    char                *u_name;
-    char                *u_group;
-    char                *time_mod;
-    char                *time_get;
-    char                *time_cre;
-    char                *linkpath;
-    time_t              timemod_d;
-    time_t              timeget_d;
-    time_t              timecre_d;
-    char                *name;
-    blkcnt_t            blocks;
-    t_flags             *flags;
-    off_t               size;
-    nlink_t             links;
-    int                 count_dirs;
-    struct s_dir        *next;
-}                       t_dir;        
+	char                *name;
+	char                *chmod;
+	char                *u_name;
+	char                *u_group;
+	char                *time_mod;
+	char                *linkpath;
+	time_t              timemod_d;
+	blkcnt_t            blocks;
+	t_flags             *flags;
+	off_t               size;
+	nlink_t             links;
+	unsigned int        count_dirs;
+	struct s_dir        *next;
+}                       t_dir;
+
 typedef struct stat     t_stat;
 typedef struct dirent   t_dirent;
 
@@ -77,7 +73,6 @@ t_flags             *get_flags(int argc, char **argv);
 void                get_all_time(t_dir *elem, t_stat *stat_);
 t_list              *get_dirs(int argc, char **argv);
 void                ft_free_lst(t_list **head);
-
 void                check_names(t_list *head, t_flags **flags);
 void                sort_dirs(t_dir **head);
 blkcnt_t            summ_blocks(t_dir *head);
@@ -90,5 +85,4 @@ char				*get_full_name(char *path_name, char *name);
 int                 open_single_file(char *path, t_flags **flags);
 t_dir				*new_t_dir(char *name, char *path, t_flags **flags);
 void				print_one(t_dir *head, char all_mod);
-char                get_file_acl(char *path);
 #endif

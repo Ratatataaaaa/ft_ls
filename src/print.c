@@ -6,11 +6,22 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/03 22:21:21 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/07 17:08:00 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/FT_LS.h"
+
+void	F_print(t_dir *head)
+{
+	if (head->chmod[0] == 'd')
+		ft_putchar('/');
+	else if (head->chmod[0] == 'l')
+		ft_putchar('@');
+	else if (head->chmod[3] == 'x' || head->chmod[6] == 'x' ||
+			head->chmod[9] == 'x')
+		ft_putchar('*');
+}
 
 static void			ft_putstr_c(char *src, char *color)
 {
@@ -46,6 +57,8 @@ static void			print_name(t_dir *head)
 	}
 	else
 		ft_putstr(head->name);
+	if (head->flags->F == 'F')
+		F_print(head);
 }
 
 void				simple_print(t_dir *head, char all_mod)
@@ -80,27 +93,23 @@ static void			print_line(t_dir *head)
 	ft_putchar('\t');
 	ft_putstr(head->time_mod);
 	ft_putchar('\t');
-	/*
-	** ft_printf("%s %d %s %s %5d %s ", head->chmod,(int)head->links,
-	** head->u_name, head->u_group,
-	** (int)head->size, head->time_mod);
-	*/
 	print_name(head);
 	if (head->chmod[0] == 'l')
 	{
 		ft_putstr(" -> ");
 		ft_putstr(head->linkpath);
 	}
-	if (head->flags->F == 'F' && head->chmod[0] != 'l')
-		F_print(head);
 	ft_putchar('\n');
 }
 
 void				all_print(t_dir *head, char all_mod)
 {
-	ft_putstr("total ");
-	ft_printnum(summ_blocks(head));
-	ft_putchar('\n');
+	if (head->next != NULL)
+	{
+		ft_putstr("total ");
+		ft_printnum(summ_blocks(head));
+		ft_putchar('\n');
+	}
 	while (head)
 	{
 		if (all_mod == '0' && head->name[0] == '.')
