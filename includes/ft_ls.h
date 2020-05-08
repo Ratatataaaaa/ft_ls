@@ -99,4 +99,5 @@ void					print_one(t_dir *head, char all_mod);
 void					print_name(t_dir *head);
 void					ft_printnum(int num);
 void					f_print(t_dir *head);
+int					ft_strsenscmp (const char *s1, const char *s2);
 #endif

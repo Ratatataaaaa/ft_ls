@@ -12,6 +12,19 @@
 
 #include "../includes/ft_ls.h"
 
+int				ft_strsenscmp (const char *s1, const char *s2)
+{
+  const unsigned char *p1 = (const unsigned char *) s1;
+  const unsigned char *p2 = (const unsigned char *) s2;
+  int result;
+  if (p1 == p2)
+    return 0;
+  while ((result = ft_tolower(*p1) - ft_tolower(*p2++)) == 0)
+    if (*p1++ == '\0')
+      break;
+  return result;
+}
+
 static void			sort_d_asci(t_dir **head)
 {
 	t_dir			*temp_a;
@@ -23,7 +36,7 @@ static void			sort_d_asci(t_dir **head)
 	while (temp_a)
 	{
 		temp_b = temp_a->next;
-		if (temp_b && (ft_strcmp(temp_a->name, temp_b->name) > 0))
+		if (temp_b && (ft_strsenscmp(temp_a->name, temp_b->name) > 0))
 		{
 			temp_a->next = temp_b->next;
 			temp_b->next = temp_a;
