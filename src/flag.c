@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:47:56 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/09 13:04:23 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/09 13:32:22 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ t_flags				*get_flags(int argc, char **argv)
 			if (argv[i][0] == '-')
 				add_flag(argv[i], flags);
 			else
-				break;
+				break ;
 		}
 	}
 	ilegal_flags(&flags);
