@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 21:14:42 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/09 13:31:54 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void				simple_print(t_dir *head, char all_mod)
 static void			print_line(t_dir *head)
 {
 	ft_putstr(head->chmod);
-	ft_putchar('\t');
+	ft_putchar(' ');
 	ft_printnum((int)head->links);
 	ft_putchar('\t');
 	ft_putstr(head->u_name);

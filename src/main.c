@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 19:33:14 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/09 13:29:27 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ void				run_ls(char *path, t_flags **flags, int argc)
 	if (head)
 	{
 		sort_dirs(&head);
-		if (argc > 2 && flags)
+		if ((*flags)->rr == 'R' || (*flags)->no_one_path > 1)
 		{
+			ft_putchar('\n');
 			ft_putstr(path);
 			if (path[ft_strlen(path) - 1] != '/')
 				ft_putstr("/:\n");
@@ -68,6 +69,7 @@ int					main(int argc, char **argv)
 	if (!flags)
 		return (EXIT_SUCCESS);
 	dirs = get_dirs(argc, argv);
+	flags->no_one_path = dirs_count(dirs);
 	save = dirs;
 	check_names(dirs, &flags);
 	while (dirs)

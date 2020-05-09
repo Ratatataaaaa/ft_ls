@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 18:20:41 by efleta            #+#    #+#             */
-/*   Updated: 2020/05/07 20:45:50 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/09 13:20:49 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void				ft_free_lst(t_list **head)
 	head = NULL;
 }
 
-int					dirs_count(t_list *head, t_dir *start)
+int					dirs_count(t_list *head)
 {
 	int				i;
 
@@ -54,11 +54,6 @@ int					dirs_count(t_list *head, t_dir *start)
 	{
 		i++;
 		head = head->next;
-	}
-	while (start)
-	{
-		start->count_dirs = i;
-		start = start->next;
 	}
 	return (i);
 }
@@ -87,7 +82,7 @@ t_list				*get_dirs(int argc, char **argv)
 	head = NULL;
 	while (++i < argc)
 	{
-		if (argv[i][0] == '-')
+		if (argv[i][0] == '-' && head == NULL)
 			continue;
 		else
 		{

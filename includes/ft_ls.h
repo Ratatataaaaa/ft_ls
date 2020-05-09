@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 21:12:40 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/09 13:21:07 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ typedef struct			s_slags
 	char				ff;
 	char				one;
 	char				illegal;
+	int					no_one_path;
 }						t_flags;
 
 typedef struct			s_dir
@@ -90,7 +91,7 @@ blkcnt_t				summ_blocks(t_dir *head);
 void					simple_print(t_dir *head, char all_mod);
 void					all_print(t_dir *head, char all_mod);
 void					main_print(t_dir *head);
-int						dirs_count(t_list *head, t_dir *start);
+int						dirs_count(t_list *head);
 void					run_ls(char *path, t_flags **flags, int argc);
 char					*get_full_name(char *path_name, char *name);
 int						open_single_file(char *path, t_flags **flags);
