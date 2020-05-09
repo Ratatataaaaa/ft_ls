@@ -6,7 +6,7 @@
 #    By: cwing <cwing@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/07 21:57:42 by bdrinkin          #+#    #+#              #
-#    Updated: 2020/05/07 17:48:29 by cwing            ###   ########.fr        #
+#    Updated: 2020/05/09 16:21:24 by cwing            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,25 +108,25 @@ all: $(NAME)
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
-	@echo "\n$(NAME):\t$(GREEN)Созданы объектные файлы$(RESET)"
-	@echo "$(NAME):\t$(GREEN)$(NAME) Был создан$(RESET)"
+	@printf "$(GREEN)[libft.a] Compiled successfuly! [OK]$(RESET)\n"
 
 $(OBJECTS_DIRECTORY):
 	@mkdir -p $(OBJECTS_DIRECTORY)
-	@echo "$(NAME):\t$(GREEN)$(OBJECTS_DIRECTORY) Был создан$(RESET)"
+	@printf "$(GREEN)[libft.a] Make OBG dir successfuly! [OK]\n$(RESET)"
 
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
-	@$(CC) $(FLAGS) $(INCLUDES) $< -o $@
-	@echo "$(GREEN).$(RESET)\c"
+	@printf "$(RED)[libft.a] Compiling [...]\r"
+	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+	@printf "$(GREEN)[libft.a] Compiling [.!.]\r$(RESET)"
 
 clean:
 	@rm -rf $(OBJECTS_DIRECTORY)
-	@echo "$(NAME):\t$(RED)$(OBJECTS_DIRECTORY) Был удален$(RESET)"
-	@echo "$(NAME):\t$(RED)Объектные файлы были удалены$(RESET)"
+	@printf "$(RED)[libft.a] Delete object files successfuly! [OK]\n$(RESET)"
+	@printf "$(RED)[libft.a] Delete OBG dir successfuly! [OK]\n$(RESET)"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo "$(NAME):\t$(RED)$(NAME) Был удален$(RESET)"
+	@printf "$(RED)[libft.a] Delete libft.a successfuly! [OK]\n$(RESET)"
 
 re:
 	@$(MAKE) fclean
