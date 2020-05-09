@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:16:40 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 19:21:43 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/09 13:00:18 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ char				*get_time(time_t *time_)
 	str_time = NULL;
 	i = 0;
 	str_time = ctime(time_) + 4;
-	if ((str = ft_strnew(22)))
+	if ((str = ft_strnew(13)))
 	{
-		while (str_time[i] && str_time[i] != '\n')
+		while (i < 12)
 		{
 			str[i] = str_time[i];
 			i++;
