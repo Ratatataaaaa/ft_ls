@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/21 19:19:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 20:38:08 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/12 17:15:32 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ t_list		*ft_lstnew(void const *content, size_t content_size)
 {
 	t_list	*ptr;
 
+	ptr = NULL;
 	if ((ptr = (t_list *)malloc(sizeof(t_list))))
 	{
-		if (!(ptr->content = malloc(sizeof(content) * (content_size))))
+		if (!(ptr->content = malloc(content_size)))
 			return (NULL);
 		if (content == NULL)
 		{

@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 21:43:15 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 20:42:28 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/13 16:54:06 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,10 @@ char		*ft_strncpy(char *dst, const char *src, size_t len)
 	while (i < len)
 	{
 		if (i < lsrc)
-		{
 			dst[i] = src[i];
-			i++;
-		}
 		else
-		{
 			dst[i] = '\0';
-			i++;
-		}
+		i++;
 	}
 	return (dst);
 }

@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: cwing <cwing@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/09/07 21:57:42 by bdrinkin          #+#    #+#              #
-#    Updated: 2020/05/09 16:21:24 by cwing            ###   ########.fr        #
+#    Created: 2019/09/07 21:57:42 by cwing             #+#    #+#              #
+#    Updated: 2020/05/12 16:31:19 by cwing            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,8 +101,6 @@ GREEN = \033[0;32m
 RED = \033[0;31m
 RESET = \033[0m
 
-.PHONY: all clean fclean re
-
 all: $(NAME)
 
 $(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
@@ -117,7 +115,8 @@ $(OBJECTS_DIRECTORY):
 $(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
 	@printf "$(RED)[libft.a] Compiling [...]\r"
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-	@printf "$(GREEN)[libft.a] Compiling [.!.]\r$(RESET)"
+	@printf "$(GREEN)[libft.a] Compiling [!!!]\r$(RESET)"
+	
 
 clean:
 	@rm -rf $(OBJECTS_DIRECTORY)
@@ -131,3 +130,5 @@ fclean: clean
 re:
 	@$(MAKE) fclean
 	@$(MAKE) all
+
+.PHONY: all clean fclean re

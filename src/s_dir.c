@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 19:22:17 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/13 16:57:45 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ static void			up_t_dir(t_dir *new_elem, t_stat *stat_, char *full_name)
 	new_elem->u_name = get_user_name(stat_->st_uid);
 	new_elem->u_group = get_group(stat_->st_gid);
 	new_elem->chmod = get_chmod(stat_->st_mode);
-	new_elem->chmod[10] = ' ';
 	new_elem->next = NULL;
 	new_elem->size = stat_->st_size;
 	get_all_time(new_elem, stat_);
@@ -101,7 +100,7 @@ t_dir				*get_dir_list(char *path, t_flags **flags)
 	t_dirent		*dirent_;
 
 	head = NULL;
-	if ((dir = opendir(path)) != NULL)
+	if ((dir = opendir(path)))
 	{
 		while ((dirent_ = readdir(dir)))
 		{
@@ -113,7 +112,10 @@ t_dir				*get_dir_list(char *path, t_flags **flags)
 				if ((new_e = new_t_dir(dirent_->d_name, path, flags)))
 					push_back(head, new_e);
 				else
+				{
 					free_t_dir(&head);
+					return(head);
+				}
 			}
 		}
 		closedir(dir);
