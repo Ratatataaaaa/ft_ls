@@ -6,7 +6,7 @@
 #    By: cwing <cwing@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/03 12:54:38 by cwing             #+#    #+#              #
-#    Updated: 2020/05/12 16:32:04 by cwing            ###   ########.fr        #
+#    Updated: 2020/05/14 13:11:18 by cwing            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,6 @@ fclean: clean
 
 re: fclean all
 
-mm:
-	@$(MAKE) fclean
-	@$(MAKE) all
-	@$(MAKE) clean
+mm: fclean all clean
 
 .PHONY: all clean fclean re mm
