@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 18:21:34 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 20:41:55 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/11 22:48:15 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ size_t		ft_strlen(const char *s)
 {
 	size_t	i;
 
-	if (s == NULL)
-		return (0);
 	i = 0;
+	if (s == NULL)
+		return (i);
 	while (s[i] != '\0')
 	{
 		++i;

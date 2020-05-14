@@ -6,7 +6,7 @@
 #    By: cwing <cwing@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/03 12:54:38 by cwing             #+#    #+#              #
-#    Updated: 2020/05/09 16:06:22 by cwing            ###   ########.fr        #
+#    Updated: 2020/05/12 16:32:04 by cwing            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,11 +23,13 @@ SRC = src/dir.c \
 	src/utils.c \
 	src/utils2.c 
 
-INC = includes/
+INC = ./includes/
+INC_FILE = $(INC)ft_ls.h
 CC = gcc
 FLAGS = -Wall -Wextra -Werror -I $(INC)
 OBG = $(SRC:.c=.o)
-LIBFT = libft/
+LIBFT_PATH = ./libft/
+LIBRA = $(LIBFT_PATH)libft.a
 
 GREEN = \033[0;32;1m
 RED = \033[0;31;1m
@@ -35,28 +37,33 @@ RESET = \033[0m
 
 all: $(NAME)
 
-%.o: %.c
+%.o: %.c $(INC_FILE) 
 	@printf "$(RED)[ft_ls] Compiling [...]\r"
-	@$(CC) $(CFLAGS) -c $< -o $@
-	@printf "$(GREEN)[ft_ls] Compiling [.!.]\r$(RESET)"
+	@$(CC) $(FLAGS) -c $< -o $@
+	@printf "$(GREEN)[ft_ls] Compiling [!!!]\r$(RESET)"
 
-$(NAME): $(OBG) libra
-	@$(CC) $(FLAGS) $(OBG) -o $(NAME) $(LIBFT)/libft.a
+$(NAME): $(OBG) $(LIBRA) 
+	@$(CC) $(FLAGS) $(OBG) -o $(NAME) $(LIBRA)
 	@printf "$(GREEN)[ft_ls] Compiled successfuly! [OK]$(RESET)\n"
 
-libra:
-	@make -C libft
+$(LIBRA): $(LIBFT_PATH)
+	@make -C $(LIBFT_PATH)
 
 clean:
 	@/bin/rm -f $(OBG)
-	@make clean -C libft
+	@make clean -C $(LIBFT_PATH)
 	@printf "$(RED)[ft_ls] Removed object files!$(RESET)\n"
 
 fclean: clean
-	@make fclean -C libft 
+	@make fclean -C $(LIBFT_PATH) 
 	@rm -f $(NAME)
 	@printf "$(RED)[ft_ls] Deleted successfuly! [OK]\n$(RESET)"
 
 re: fclean all
 
-.PHONY: all clean fclean re
+mm:
+	@$(MAKE) fclean
+	@$(MAKE) all
+	@$(MAKE) clean
+
+.PHONY: all clean fclean re mm

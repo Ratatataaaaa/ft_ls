@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 21:47:15 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/07 19:22:30 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/12 18:20:45 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void			sort_d_asci(t_dir **head)
 	while (temp_a)
 	{
 		temp_b = temp_a->next;
-		if (temp_b && (ft_strcmp(temp_a->name, temp_b->name) > 0))
+		if (temp_b && (ft_memcmp(temp_a->name, temp_b->name, MAXNAMLEN) > 0))
 		{
 			temp_a->next = temp_b->next;
 			temp_b->next = temp_a;

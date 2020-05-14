@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/ft_ls",
-            "args": ["-la"],
+            "args": ["-R" , "/Applications/Visual Studio (old 5).app/Contents/Resources/lib/monodevelop/AddIns/designer/Xamarin.AndroidDesigner/java/data/res"],
             "stopAtEntry": true,
             "cwd": "${workspaceFolder}",
             "environment": [],

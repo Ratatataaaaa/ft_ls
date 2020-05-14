@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by efleta            #+#    #+#             */
-/*   Updated: 2020/05/07 20:46:10 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/12 15:06:31 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void				check_names(t_list *head, t_flags **flags)
 		if (dir)
 			closedir(dir);
 		else if (open_single_file((char*)(head->content), flags))
-			ft_isdigit('A');
+			NULL;
 		else
 			no_such_file((char*)(head->content));
 		head = head->next;

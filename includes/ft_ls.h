@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/09 13:21:07 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/12 13:55:34 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define STD_T			"\x1b[0m"
 
 # ifndef LINK_MAX
-#  define LINK_MAX 32767
+#  define LINK_MAX 1024
 # endif
 
 # ifndef MAXNAMLEN

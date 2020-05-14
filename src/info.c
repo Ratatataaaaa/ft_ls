@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:16:40 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/09 13:00:18 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/13 16:57:24 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ char				*get_chmod(mode_t mode)
 		chmod[7] = (S_IROTH & mode) ? 'r' : '-';
 		chmod[8] = (S_IWOTH & mode) ? 'w' : '-';
 		chmod[9] = (S_IXOTH & mode) ? 'x' : '-';
+		chmod[10] = ' ';
 		if (S_ISUID & mode)
 			chmod[3] = chmod[3] == '-' ? 'S' : 's';
 		if (S_ISGID & mode)
@@ -84,13 +85,15 @@ char				*get_user_name(uid_t uid)
 {
 	struct passwd	*pass_t;
 	char			*user_name;
+	size_t			name_len;
 
 	pass_t = NULL;
 	user_name = NULL;
+	name_len = 0;
 	if ((pass_t = getpwuid(uid)) &&
-		(user_name = ft_strnew(ft_strlen(pass_t->pw_name) + 1)))
+		(user_name = ft_strnew(MAXNAMLEN)))
 	{
-		user_name = ft_strcpy(user_name, pass_t->pw_name);
+		user_name = ft_strncpy(user_name, pass_t->pw_name, MAXNAMLEN);
 	}
 	return (user_name);
 }
