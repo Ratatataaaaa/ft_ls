@@ -32,6 +32,20 @@ static void			recurs_run(t_dir *head, t_flags **flags, char *path, int a)
 	}
 }
 
+int					get_space(t_dir *head)
+{
+	int len;
+
+	len = 0;
+	while(head)
+	{
+		if (len < head->len)
+			len = head->len;
+		head = head->next;
+	}
+	return (len);
+}
+
 void				run_ls(char *path, t_flags **flags, int argc)
 {
 	t_dir			*head;

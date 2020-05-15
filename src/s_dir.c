@@ -20,6 +20,7 @@ static void			up_t_dir(t_dir *new_elem, t_stat *stat_, char *full_name)
 	new_elem->chmod = get_chmod(stat_->st_mode);
 	new_elem->next = NULL;
 	new_elem->size = stat_->st_size;
+	new_elem->len = ft_strlen(ft_itoa(new_elem->size));
 	get_all_time(new_elem, stat_);
 	new_elem->blocks = stat_->st_blocks;
 	if (new_elem->chmod[0] == 'l')
