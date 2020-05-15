@@ -6,22 +6,18 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 18:21:34 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/11 22:48:15 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/15 13:22:54 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t		ft_strlen(const char *s)
+size_t			ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t		iter;
 
-	i = 0;
-	if (s == NULL)
-		return (i);
-	while (s[i] != '\0')
-	{
-		++i;
-	}
-	return (i);
+	iter = 0;
+	while (s[iter])
+		iter++;
+	return (iter);
 }

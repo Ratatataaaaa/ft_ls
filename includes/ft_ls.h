@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/12 13:55:34 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/14 16:36:34 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <pwd.h>
 # include <grp.h>
 # include <time.h>
+# include <errno.h>
+# include <string.h>
 
 # define RED_T			"\x1b[31m"
 # define GRE_T			"\x1b[32m"

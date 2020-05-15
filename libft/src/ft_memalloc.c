@@ -6,16 +6,16 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/17 22:48:49 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/13 16:38:23 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/15 13:30:23 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-void	*ft_memalloc(size_t size)
+void		*ft_memalloc(size_t size)
 {
-	void *temp;
+	void	*temp;
 
 	temp = NULL;
 	temp = (void *)malloc(size);

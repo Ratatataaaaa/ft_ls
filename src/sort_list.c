@@ -6,36 +6,46 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/16 21:47:15 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/12 18:20:45 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/15 16:02:10 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
+
+static void			swap(t_dir **head, t_dir **temp_a, t_dir **temp_b, t_dir **back)
+{
+	(*temp_a)->next = (*temp_b)->next;
+	(*temp_b)->next = (*temp_a);
+	if (!(*back))
+		*head = (*temp_b);
+	if ((*back))
+		(*back)->next = (*temp_b);
+}
 
 static void			sort_d_asci(t_dir **head)
 {
 	t_dir			*temp_a;
 	t_dir			*temp_b;
 	t_dir			*back;
+	int				chek;
 
 	temp_a = *head;
+	temp_b = NULL;
 	back = NULL;
+	chek = 0;
 	while (temp_a)
 	{
 		temp_b = temp_a->next;
-		if (temp_b && (ft_memcmp(temp_a->name, temp_b->name, MAXNAMLEN) > 0))
+		if (temp_b && (ft_strncmp(temp_a->name, temp_b->name, MAXNAMLEN) > 0))
 		{
-			temp_a->next = temp_b->next;
-			temp_b->next = temp_a;
-			if (!back)
-				*head = temp_b;
-			if (back)
-				back->next = temp_b;
-			sort_d_asci(head);
+			swap(head, &temp_a, &temp_b, &back);
+			chek = 1;
 		}
 		back = temp_a;
 		temp_a = temp_b;
 	}
+	if (chek == 1)
+		sort_d_asci(head);
 }
 
 static void			sort_d_rev(t_dir **head)
@@ -61,25 +71,24 @@ static void			sort_d_time(t_dir **head)
 	t_dir			*temp_a;
 	t_dir			*temp_b;
 	t_dir			*back;
+	int				chek;
 
 	temp_a = *head;
 	back = NULL;
+	chek = 0;
 	while (temp_a)
 	{
 		temp_b = temp_a->next;
 		if (temp_b && (temp_a->timemod_d > temp_b->timemod_d))
 		{
-			temp_a->next = temp_b->next;
-			temp_b->next = temp_a;
-			if (!back)
-				*head = temp_b;
-			if (back)
-				back->next = temp_b;
-			sort_d_time(head);
+			swap(head, &temp_a, &temp_b, &back);
+			chek = 1;
 		}
 		back = temp_a;
 		temp_a = temp_b;
 	}
+	if (chek == 1)
+		sort_d_time(head);
 }
 
 void				sort_dirs(t_dir **head)

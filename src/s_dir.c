@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/13 16:57:45 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/15 16:30:06 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ static void			up_t_dir(t_dir *new_elem, t_stat *stat_, char *full_name)
 	new_elem->blocks = stat_->st_blocks;
 	if (new_elem->chmod[0] == 'l')
 	{
-		if ((new_elem->linkpath = ft_strnew(LINK_MAX + 1)) &&
+		if ((new_elem->linkpath = ft_strnew(LINK_MAX)) &&
 			readlink(full_name, new_elem->linkpath, LINK_MAX) > 0)
-			ft_isdigit('A');
+			NULL;
 	}
 	else
 		new_elem->linkpath = NULL;
@@ -34,19 +34,16 @@ static void			up_t_dir(t_dir *new_elem, t_stat *stat_, char *full_name)
 
 t_dir				*new_t_dir(char *name, char *path, t_flags **flags)
 {
-	t_stat			*stat_;
+	t_stat			stat_;
 	t_dir			*new_elem;
 	char			*full_name;
 
-	stat_ = NULL;
-	new_elem = NULL;
+	new_elem = (t_dir*)malloc(sizeof(t_dir));
 	full_name = NULL;
 	full_name = get_full_name(path, name);
-	if ((stat_ = malloc(sizeof(t_stat))) &&
-		(new_elem = malloc(sizeof(t_dir))) &&
-		(lstat(full_name, stat_) == 0))
+	if (lstat(full_name, &stat_) == 0)
 	{
-		up_t_dir(new_elem, stat_, full_name);
+		up_t_dir(new_elem, &stat_, full_name);
 		new_elem->name = ft_strnew(MAXNAMLEN);
 		ft_strncpy(new_elem->name, name, MAXNAMLEN);
 		new_elem->flags = *flags;
@@ -54,19 +51,26 @@ t_dir				*new_t_dir(char *name, char *path, t_flags **flags)
 	else
 		ft_memdel((void**)&new_elem);
 	ft_memdel((void**)&full_name);
-	ft_memdel((void**)&stat_);
 	return (new_elem);
 }
 
-static void			push_back(t_dir *head, t_dir *new_elem)
+static void			push_back(t_dir **head, t_dir *new_elem)
 {
-	if (head && new_elem)
+	t_dir			*temp;
+
+	if (head && (*head == NULL))
 	{
-		while (head->next != NULL)
+		*head = new_elem;
+		return ;
+	}
+	temp = *head;
+	if (new_elem)
+	{
+		while (temp->next != NULL)
 		{
-			head = head->next;
+			temp = temp->next;
 		}
-		head->next = new_elem;
+		temp->next = new_elem;
 		new_elem = NULL;
 	}
 }
@@ -89,6 +93,7 @@ void				free_t_dir(t_dir **src)
 		head = head->next;
 		ft_memdel((void**)&to_del);
 	}
+	*src = NULL;
 	src = NULL;
 }
 
@@ -100,25 +105,26 @@ t_dir				*get_dir_list(char *path, t_flags **flags)
 	t_dirent		*dirent_;
 
 	head = NULL;
-	if ((dir = opendir(path)))
+	new_e = NULL;
+	if (path && (dir = opendir(path)))
 	{
 		while ((dirent_ = readdir(dir)))
 		{
-			if (head == NULL &&
-			(head = new_t_dir(dirent_->d_name, path, flags)))
-				continue;
+			new_e = new_t_dir(dirent_->d_name, path, flags);
+			if (new_e)
+				push_back(&head, new_e);
 			else
 			{
-				if ((new_e = new_t_dir(dirent_->d_name, path, flags)))
-					push_back(head, new_e);
-				else
-				{
-					free_t_dir(&head);
-					return(head);
-				}
+				closedir(dir);
+				free_t_dir(&head);
+				return(head);
 			}
 		}
 		closedir(dir);
+	}
+	else
+	{
+		ft_putstr(strerror(errno));
 	}
 	return (head);
 }
