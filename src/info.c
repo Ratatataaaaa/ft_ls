@@ -85,11 +85,11 @@ char				*get_user_name(uid_t uid)
 {
 	struct passwd	*pass_t;
 	char			*user_name;
-	size_t			name_len;
+	// size_t			name_len;
 
 	pass_t = NULL;
 	user_name = NULL;
-	name_len = 0;
+	// name_len = 0;
 	if ((pass_t = getpwuid(uid)) &&
 		(user_name = ft_strnew(MAXNAMLEN)))
 	{

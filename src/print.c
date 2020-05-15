@@ -28,7 +28,20 @@ void				simple_print(t_dir *head, char all_mod)
 	ft_putchar('\n');
 }
 
-static void			print_line(t_dir *head)
+void				print_space(t_dir *head, int len)
+{
+	int i;
+
+	i = len - ft_strlen(ft_itoa(head->size));
+	ft_putchar(' ');
+	while (i > 0)
+	{
+		ft_putchar(' ');
+		i--;
+	}
+}
+
+static void			print_line(t_dir *head, int len)
 {
 	ft_putstr(head->chmod);
 	ft_putchar(' ');
@@ -37,7 +50,7 @@ static void			print_line(t_dir *head)
 	ft_putstr(head->u_name);
 	ft_putchar('\t');
 	ft_putstr(head->u_group);
-	ft_putchar('\t');
+	print_space(head, len);
 	ft_printnum((int)head->size);
 	ft_putchar('\t');
 	ft_putstr(head->time_mod);
@@ -51,7 +64,7 @@ static void			print_line(t_dir *head)
 	ft_putchar('\n');
 }
 
-void				all_print(t_dir *head, char all_mod)
+void				all_print(t_dir *head, char all_mod, int len)
 {
 	if (head->next != NULL)
 	{
@@ -66,15 +79,18 @@ void				all_print(t_dir *head, char all_mod)
 			head = head->next;
 			continue;
 		}
-		print_line(head);
+		print_line(head, len);
 		head = head->next;
 	}
 }
 
 void				main_print(t_dir *head)
 {
+	int len;
+
+	len = get_space(head);
 	if (head->flags->l == 'l')
-		all_print(head, head->flags->a);
+		all_print(head, head->flags->a, len);
 	else if (head->flags->one == '1')
 		print_one(head, head->flags->a);
 	else
