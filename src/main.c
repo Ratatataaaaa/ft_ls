@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/14 15:48:04 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/15 19:08:22 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,8 +88,6 @@ int					main(int argc, char **argv)
 	check_names(dirs, &flags);
 	while (dirs)
 	{
-		ft_putstr((char*)dirs->content);
-		ft_putchar('\n');
 		run_ls((char*)dirs->content, &flags, argc);
 		dirs = dirs->next;
 	}

@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/15 16:30:06 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/15 18:50:09 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void			up_t_dir(t_dir *new_elem, t_stat *stat_, char *full_name)
 	new_elem->u_group = get_group(stat_->st_gid);
 	new_elem->chmod = get_chmod(stat_->st_mode);
 	new_elem->next = NULL;
-	new_elem->size = stat_->st_size;
-	new_elem->len = ft_strlen(ft_itoa(new_elem->size));
+	new_elem->size = ft_itoa((int)stat_->st_size);
+	new_elem->len = ft_strlen(new_elem->size);
 	get_all_time(new_elem, stat_);
 	new_elem->blocks = stat_->st_blocks;
 	if (new_elem->chmod[0] == 'l')
@@ -91,6 +91,7 @@ void				free_t_dir(t_dir **src)
 		ft_memdel((void**)&head->time_mod);
 		ft_memdel((void**)&head->name);
 		ft_memdel((void**)&head->linkpath);
+		ft_memdel((void**)&head->size);
 		head = head->next;
 		ft_memdel((void**)&to_del);
 	}

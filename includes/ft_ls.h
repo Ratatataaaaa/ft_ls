@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/14 16:36:34 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/15 18:50:06 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,9 @@ typedef struct			s_dir
 	time_t				timemod_d;
 	blkcnt_t			blocks;
 	t_flags				*flags;
-	off_t				size;
+	char				*size;
 	nlink_t				links;
+	int					len;
 	unsigned int		count_dirs;
 	struct s_dir		*next;
 }						t_dir;
@@ -91,7 +92,7 @@ void					check_names(t_list *head, t_flags **flags);
 void					sort_dirs(t_dir **head);
 blkcnt_t				summ_blocks(t_dir *head);
 void					simple_print(t_dir *head, char all_mod);
-void					all_print(t_dir *head, char all_mod);
+void					all_print(t_dir *head, char all_mod, int len);
 void					main_print(t_dir *head);
 int						dirs_count(t_list *head);
 void					run_ls(char *path, t_flags **flags, int argc);
@@ -102,5 +103,6 @@ void					print_one(t_dir *head, char all_mod);
 void					print_name(t_dir *head);
 void					ft_printnum(int num);
 void					f_print(t_dir *head);
+int						get_space(t_dir *head);
 
 #endif

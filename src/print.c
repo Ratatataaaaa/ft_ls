@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/09 13:31:54 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/15 18:52:46 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void				print_space(t_dir *head, int len)
 {
 	int i;
 
-	i = len - ft_strlen(ft_itoa(head->size));
+	i = len - ft_strlen(head->size);
 	ft_putchar(' ');
 	while (i > 0)
 	{
@@ -51,10 +51,10 @@ static void			print_line(t_dir *head, int len)
 	ft_putchar('\t');
 	ft_putstr(head->u_group);
 	print_space(head, len);
-	ft_printnum((int)head->size);
-	ft_putchar('\t');
+	ft_putstr(head->size);
+	ft_putchar(' ');
 	ft_putstr(head->time_mod);
-	ft_putchar('\t');
+	ft_putchar(' ');
 	print_name(head);
 	if (head->chmod[0] == 'l')
 	{
