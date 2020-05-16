@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/04 14:16:40 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/13 16:57:24 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 13:55:34 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,9 @@ char				*get_user_name(uid_t uid)
 {
 	struct passwd	*pass_t;
 	char			*user_name;
-	// size_t			name_len;
 
 	pass_t = NULL;
 	user_name = NULL;
-	// name_len = 0;
 	if ((pass_t = getpwuid(uid)) &&
 		(user_name = ft_strnew(MAXNAMLEN)))
 	{

@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by efleta            #+#    #+#             */
-/*   Updated: 2020/05/12 15:06:31 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 15:26:19 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void				no_such_file(char *path)
 void				get_all_time(t_dir *elem, t_stat *stat_)
 {
 	elem->time_mod = get_time(&stat_->st_mtime);
-	elem->timemod_d = stat_->st_mtime;
+	elem->timemod_d = stat_->st_ctime;
 }
 
 void				check_names(t_list *head, t_flags **flags)
@@ -32,9 +32,17 @@ void				check_names(t_list *head, t_flags **flags)
 	dir = NULL;
 	while (head)
 	{
+		if (((char*)head->content)[0] == '\0')
+		{
+			no_such_file((char*)(head->content));
+			head = head->next;
+			continue;
+		}	
 		dir = opendir((char*)(head->content));
 		if (dir)
 			closedir(dir);
+		else if (errno == 13)
+			permission_denied(head, *flags);
 		else if (open_single_file((char*)(head->content), flags))
 			NULL;
 		else

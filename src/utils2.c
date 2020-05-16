@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 20:25:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/15 13:33:07 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 13:41:41 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,17 @@ char				*get_full_name(char *path_name, char *name)
 		ft_strncat(full_name, name, PATH_MAX + NAME_MAX);
 	}
 	return (full_name);
+}
+
+void				permission_denied(t_list *head, t_flags *flags)
+{
+	if (flags->rr == 'R' || flags->no_one_path > 1)
+	{
+		ft_putstr((char*)head->content);
+		ft_putstr(":\n");
+	}
+	ft_putstr("ft_ls: ");
+	ft_putstr((char*)head->content);
+	ft_putstr(": Permission denied\n");
+	errno = 0;
 }

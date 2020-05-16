@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/15 18:50:06 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 13:40:56 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <grp.h>
 # include <time.h>
 # include <errno.h>
-# include <string.h>
 
 # define RED_T			"\x1b[31m"
 # define GRE_T			"\x1b[32m"
@@ -104,5 +103,6 @@ void					print_name(t_dir *head);
 void					ft_printnum(int num);
 void					f_print(t_dir *head);
 int						get_space(t_dir *head);
+void					permission_denied(t_list *head, t_flags *flags);
 
 #endif
