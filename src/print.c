@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/15 18:52:46 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 15:43:19 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,6 @@ void				simple_print(t_dir *head, char all_mod)
 		head = head->next;
 	}
 	ft_putchar('\n');
-}
-
-void				print_space(t_dir *head, int len)
-{
-	int i;
-
-	i = len - ft_strlen(head->size);
-	ft_putchar(' ');
-	while (i > 0)
-	{
-		ft_putchar(' ');
-		i--;
-	}
 }
 
 static void			print_line(t_dir *head, int len)

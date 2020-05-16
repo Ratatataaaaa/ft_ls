@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 13:10:10 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/16 14:17:53 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 15:40:47 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,7 @@ t_dir				*get_dir_list(char *path, t_flags **flags)
 			{
 				closedir(dir);
 				free_t_dir(&head);
-				return(head);
+				return (head);
 			}
 		}
 		closedir(dir);

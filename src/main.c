@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/15 19:08:22 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 15:38:44 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int					get_space(t_dir *head)
 	int len;
 
 	len = 0;
-	while(head)
+	while (head)
 	{
 		if (len < head->len)
 			len = head->len;

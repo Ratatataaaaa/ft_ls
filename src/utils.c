@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by efleta            #+#    #+#             */
-/*   Updated: 2020/05/16 15:26:19 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 15:38:29 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void				check_names(t_list *head, t_flags **flags)
 			no_such_file((char*)(head->content));
 			head = head->next;
 			continue;
-		}	
+		}
 		dir = opendir((char*)(head->content));
 		if (dir)
 			closedir(dir);

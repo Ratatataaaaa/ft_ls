@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/07 19:11:58 by efleta            #+#    #+#             */
-/*   Updated: 2020/05/07 20:46:01 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/16 15:43:15 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,17 @@ void				print_name(t_dir *head)
 		ft_putstr(head->name);
 	if (head->flags->ff == 'F')
 		f_print(head);
+}
+
+void				print_space(t_dir *head, int len)
+{
+	int i;
+
+	i = len - ft_strlen(head->size);
+	ft_putchar(' ');
+	while (i > 0)
+	{
+		ft_putchar(' ');
+		i--;
+	}
 }
