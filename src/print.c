@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/18 16:53:52 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 18:53:25 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void				simple_print(t_dir *head, char all_mod, int col)
 	int				max_len;
 
 	i = 1;
-	max_len = 1 + max_name_len(head);
+	max_len = 3 + max_name_len(head);
 	while (head)
 	{
 		if (all_mod == '0' && head->name[0] == '.')
@@ -31,7 +31,7 @@ void				simple_print(t_dir *head, char all_mod, int col)
 		print_name(head);
 		while (space--)
 			ft_putchar(' ');
-		if (i % (col / max_len) == 0)
+		if (i % (int)(col / max_len) == 0)
 			ft_putchar('\n');
 		i++;
 		head = head->next;
