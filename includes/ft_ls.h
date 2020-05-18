@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/18 16:52:46 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 20:38:50 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,6 @@ int						get_space(t_dir *head);
 void					print_space(t_dir *head, int len);
 void					permission_denied(t_list *head, t_flags *flags);
 int						max_name_len(t_dir *head);
+int						is_flag(char flag);
 
 #endif

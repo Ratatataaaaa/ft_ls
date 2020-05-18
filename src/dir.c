@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 18:20:41 by efleta            #+#    #+#             */
-/*   Updated: 2020/05/09 13:20:49 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 20:39:26 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_list				*get_dirs(int argc, char **argv)
 	head = NULL;
 	while (++i < argc)
 	{
-		if (argv[i][0] == '-' && head == NULL)
+		if (argv[i][0] == '-' && is_flag(argv[i][1]) && head == NULL)
 			continue;
 		else
 		{

@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/09 19:47:56 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/09 13:32:22 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 20:38:35 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void			ilegal_flags(t_flags **flags)
 	}
 }
 
-static int			is_flag(char flag)
+int					is_flag(char flag)
 {
 	if (flag == 'l' || flag == 'R' || flag == 'a' || flag == 'r' ||
 	flag == 'G' || flag == '1' || flag == 't' || flag == 'F')
