@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by efleta            #+#    #+#             */
-/*   Updated: 2020/05/18 19:12:40 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 19:17:42 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,11 @@ blkcnt_t			summ_blocks(t_dir *head)
 	summ = 0;
 	while (head)
 	{
+		if (head->flags->a == '0' && head->name[0] == '.')
+		{
+			head = head->next;
+			continue;
+		}
 		summ += head->blocks;
 		head = head->next;
 	}
