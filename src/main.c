@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:22:00 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/16 15:38:44 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 16:37:26 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,6 @@ static void			recurs_run(t_dir *head, t_flags **flags, char *path, int a)
 		}
 		save_head = save_head->next;
 	}
-}
-
-int					get_space(t_dir *head)
-{
-	int len;
-
-	len = 0;
-	while (head)
-	{
-		if (len < head->len)
-			len = head->len;
-		head = head->next;
-	}
-	return (len);
 }
 
 void				run_ls(char *path, t_flags **flags, int argc)

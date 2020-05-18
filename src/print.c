@@ -6,14 +6,20 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/24 20:11:44 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/16 15:43:19 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 16:53:52 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_ls.h"
 
-void				simple_print(t_dir *head, char all_mod)
+void				simple_print(t_dir *head, char all_mod, int col)
 {
+	int				i;
+	int				space;
+	int				max_len;
+
+	i = 1;
+	max_len = 1 + max_name_len(head);
 	while (head)
 	{
 		if (all_mod == '0' && head->name[0] == '.')
@@ -21,8 +27,13 @@ void				simple_print(t_dir *head, char all_mod)
 			head = head->next;
 			continue;
 		}
+		space = max_len - ft_strlen(head->name);
 		print_name(head);
-		ft_putchar('\t');
+		while (space--)
+			ft_putchar(' ');
+		if (i % (col / max_len) == 0)
+			ft_putchar('\n');
+		i++;
 		head = head->next;
 	}
 	ft_putchar('\n');
@@ -73,15 +84,17 @@ void				all_print(t_dir *head, char all_mod, int len)
 
 void				main_print(t_dir *head)
 {
-	int len;
+	int				len;
+	struct winsize	windows;
 
+	ioctl(STDOUT_FILENO, TIOCGWINSZ, &windows);
 	len = get_space(head);
 	if (head->flags->l == 'l')
 		all_print(head, head->flags->a, len);
 	else if (head->flags->one == '1')
 		print_one(head, head->flags->a);
 	else
-		simple_print(head, head->flags->a);
+		simple_print(head, head->flags->a, (int)windows.ws_col);
 }
 
 void				print_one(t_dir *head, char all_mod)

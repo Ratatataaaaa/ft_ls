@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/22 02:13:55 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/16 15:43:06 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 16:52:46 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <grp.h>
 # include <time.h>
 # include <errno.h>
+# include <termios.h>
+# include <sys/ioctl.h>
 
 # define RED_T			"\x1b[31m"
 # define GRE_T			"\x1b[32m"
@@ -90,7 +92,7 @@ void					ft_free_lst(t_list **head);
 void					check_names(t_list *head, t_flags **flags);
 void					sort_dirs(t_dir **head);
 blkcnt_t				summ_blocks(t_dir *head);
-void					simple_print(t_dir *head, char all_mod);
+void					simple_print(t_dir *head, char all_mod, int col);
 void					all_print(t_dir *head, char all_mod, int len);
 void					main_print(t_dir *head);
 int						dirs_count(t_list *head);
@@ -105,5 +107,6 @@ void					f_print(t_dir *head);
 int						get_space(t_dir *head);
 void					print_space(t_dir *head, int len);
 void					permission_denied(t_list *head, t_flags *flags);
+int						max_name_len(t_dir *head);
 
 #endif

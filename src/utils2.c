@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/05/02 20:25:31 by cwing             #+#    #+#             */
-/*   Updated: 2020/05/16 15:40:24 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 16:53:29 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,33 @@ void				permission_denied(t_list *head, t_flags *flags)
 	ft_putstr((char*)head->content);
 	ft_putstr(": Permission denied\n");
 	errno = 0;
+}
+
+int					get_space(t_dir *head)
+{
+	int len;
+
+	len = 0;
+	while (head)
+	{
+		if (len < head->len)
+			len = head->len;
+		head = head->next;
+	}
+	return (len);
+}
+
+int					max_name_len(t_dir *head)
+{
+	int				len;
+	int				max_len;
+
+	max_len = 0;
+	while (head)
+	{
+		len = ft_strlen(head->name);
+		max_len = (len > max_len) ? len : max_len;
+		head = head->next;
+	}
+	return (max_len);
 }

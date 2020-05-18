@@ -6,7 +6,7 @@
 /*   By: cwing <cwing@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/10 15:41:31 by efleta            #+#    #+#             */
-/*   Updated: 2020/05/16 15:38:29 by cwing            ###   ########.fr       */
+/*   Updated: 2020/05/18 16:51:51 by cwing            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void				no_such_file(char *path)
 void				get_all_time(t_dir *elem, t_stat *stat_)
 {
 	elem->time_mod = get_time(&stat_->st_mtime);
-	elem->timemod_d = stat_->st_ctime;
+	elem->timemod_d = stat_->st_mtime;
 }
 
 void				check_names(t_list *head, t_flags **flags)
